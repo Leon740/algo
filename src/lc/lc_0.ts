@@ -1,6 +1,6 @@
 import { log } from '@src/utils/log.ts';
 
-export function lc1() {
+export function lc_0() {
   const CANDIES = [2, 3, 5, 1, 3];
   const EXTRA_CANDIES = 3;
 

@@ -1,3 +1,5 @@
-import { lc1 } from '@src/lc/lc1.ts';
+// import { js2 } from '@src/js/js2.ts';
+import { lc_1_1 } from '@src/lc/lc_1_1.ts';
 
-lc1();
+// js2();
+lc_1_1();
