@@ -191,10 +191,83 @@ Not being afraid to edit.
 
 Following the certain stages.
 
-# 6 Тренировки
+# 6 Trainings
 
 new languages, frameworks
 pet projects
 open source
 volunteering
 challenges (lc, etc)
+
+# 7 Time
+
+## Meetings
+
+What is the goal, plan of the meeting?
+What is your goal on this meeting?
+Always have and share a plan for the meeting.
+Record meetings for others.
+I prefer attending many meetings and have some extra knowledge instead of doing smth, which will not be used or will have to be updated.
+
+## Arguments
+
+Create RFC, a doc with comments.
+Participants write down their thoughts, share them.
+When you write you formulate, rethink, analyze better.
+Doc is stored and can be accessed at any time.
+
+## Concentration
+
+Problem
+
+- anxiety
+  Write it down, Analyze.
+
+- every day life issues
+  Write it down, Analyze.
+
+- lack of sleep
+  Take a nap, Balance life.
+
+- stimulators (coffee etc.)
+  Do not overuse.
+
+- distraction (phone, background noise, etc)
+  Focus mode, Basement.
+
+- recharge
+  Sport, Mediation, Book, Nap
+
+- inspiration
+  Books, Movies, people
+
+## Pomodoro
+
+45 m Work
+10 m Diff
+5 m Break
+
+## Priorities Inversion
+
+1st task is boring or hard or solution not found, but it's the most important task.
+2nd task is fun, easy, but has lower priority.
+Often, the 2nd task will be the first to work on.
+Cool off, follow the priorities list.
+
+## Closure
+
+There are 2 solutions for the problem.
+Decided to go with the 1st.
+After some time realized that it's not working 100%.
+Instead of switching to 2nd, 1st is kept.
+This is called closure. Since much resources were payed to the 1st, the switch to 2nd is getting harder.
+In this case, stop digging a pit. The longer you go with 1st the deeper you get.
+Professional is ready to switch any time between his solutions, ideas etc.
+
+## Dirt
+
+Similar to pit but worse.
+There is a solution to this problem or a feature developed.
+After some updates, time etc. other features override existing, or other issues.
+It means the wrong architecture solution was taken.
+Instead of making dirt with current solution switch to another one and redo from scratch.

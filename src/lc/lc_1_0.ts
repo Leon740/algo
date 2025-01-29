@@ -1,6 +1,6 @@
 import { log } from '@src/utils/log.ts';
 
-export function lc_1() {
+export function lc_1_0() {
   const isVowel = (char: string = ''): boolean => {
     if (typeof char !== 'string') return false;
 
