@@ -271,3 +271,106 @@ There is a solution to this problem or a feature developed.
 After some updates, time etc. other features override existing, or other issues.
 It means the wrong architecture solution was taken.
 Instead of making dirt with current solution switch to another one and redo from scratch.
+
+# 8 Estimates
+
+## Promise, or commitment
+
+If you promise to complete this task within specific deadlines, you must accomplish it.
+In this case, if anything goes wrong you will have to work overtime, on weekend.
+
+## Estimate
+
+Sharing your thoughts on this task, so the resources needed are not determined as they are in case with promise.
+
+## How to estimate
+
+## Probability counting
+
+O - optimistic case, all goes smooth by plan
+N - neutral case, some issues but following the plan
+P - pesimistic case, everything goes wrong
+
+## Formula = (O + 4 N + P) / 6;
+
+## Create weighted graph
+
+## Theory of Large numbers
+
+Compose large task into smaller. Estimate them, count result.
+
+## Poker planning
+
+Ask colleagues about their thoughts on this point
+One of people is selecting the estimate to discuss.
+Each member of a group has 5 papers with numbers from 1 to 5.
+After 1, 2, 3 everyone shows their point at the same time.
+
+# 9 Pressure
+
+A doctor is making a surgery, what if he complained how tired he is, how difficult it is, smoke every 5 minutes, smack his tools.
+
+## Promises
+
+Give promises when you sure, always give estimates.
+
+## Interaction
+
+Tell management about your issues and solutions for them.
+
+## Code
+
+Keep it clean. No dirt.
+If you remove tests under pressure, it means you don't believe in them.
+
+## Help
+
+Ask for help.
+Your colleague will see what you can't see.
+People like to help.
+Help when someone is in pit.
+
+## Stress
+
+Control the stress. Write it out. Reflect. Calm down. Make a plan.
+You work best when you are calm.
+
+## Resume
+
+Calmness
+Cleaness in code
+Interaction, help
+
+# 10 Interaction
+
+## Programmer - People
+
+It's hard to understand some people, get their point?
+And the computer is deterministic?
+No, you work for them, you code for them.
+
+## Programmer - Manager
+
+Manager is working for business goals.
+And you work for business, you want it to succeed and be successful.
+
+## Programmer - Programmer
+
+Need to be concentrated? Headphones, dark corner? Shy to ask for help?
+No, all of you are working on the same goal, with the same tasks, so you have to ask for help and provide it.
+Sit together, in the same room, watch how they work.
+
+## Resume
+
+Your work is for people. So do not escape them, interact with them.
+
+# 11 Education
+
+Doctors study decades and tons of information before even attending to the exams.
+People in It complain that there is no work after they did some youtube videos and 2 months courses. Ha-ha.
+
+Code is everywhere, it surrounds us.
+
+Programmers job is really important, required, desired, loved etc ...
+
+Be a professional, find a master-teacher, keep learning, arbaiten mahen!!!

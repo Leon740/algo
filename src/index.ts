@@ -1,3 +1,3 @@
-import { lc_2 } from '@src/lc/lc_2.ts';
+import { lc_4 } from '@src/lc/lc_4.ts';
 
-lc_2();
+lc_4();
