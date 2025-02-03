@@ -1,6 +1,6 @@
 import { log } from '@src/utils/log.ts';
 
-export function js_1() {
+export function filter() {
   const numberIsGreaterThan10 = (number?: number): boolean => {
     if (typeof number !== 'number') return false;
 

@@ -1,6 +1,6 @@
 import { log } from '@src/utils/log.ts';
 
-export function js_0() {
+export function map() {
   function addOne(number?: number): number {
     if (typeof number === 'undefined') return 0;
 
