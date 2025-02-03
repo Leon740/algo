@@ -3,7 +3,6 @@
 // 2functions: sum, factorial
 
 import { log } from '@src/utils/log.ts';
-import { createLanguageService } from 'typescript';
 
 export function js_6() {
   const isUndefined = (variable?: unknown): boolean => {
