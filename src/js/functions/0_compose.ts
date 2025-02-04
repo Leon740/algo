@@ -1,6 +1,6 @@
 import { log } from '@src/utils/log.ts';
 
-export function compose() {
+export function composeModule() {
   type F = (x: number) => number;
 
   console.group('double');

@@ -1,6 +1,6 @@
 import { log } from '@src/utils/log.ts';
 
-export function arguments() {
+export function argumentsModule() {
   type JSONValueT = null | boolean | number | string | JSONValueT[] | { [key: string]: JSONValueT };
 
   const getArgumentsLength = (...args: JSONValueT[]): number => {

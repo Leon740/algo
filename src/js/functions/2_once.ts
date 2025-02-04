@@ -1,6 +1,6 @@
 import { log } from '@src/utils/log.ts';
 
-export function once() {
+export function onceModule() {
   console.group('sum');
 
   const sum = (...args: number[]): number => {

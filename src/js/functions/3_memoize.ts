@@ -4,7 +4,7 @@
 
 import { log } from '@src/utils/log.ts';
 
-export function memoize() {
+export function memoizeModule() {
   const isUndefined = (variable?: unknown): boolean => {
     return variable === undefined;
   };

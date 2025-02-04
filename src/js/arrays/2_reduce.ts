@@ -1,6 +1,6 @@
 import { log } from '@src/utils/log.ts';
 
-export function reduce() {
+export function reduceModule() {
   const ARRAY = [1, 2, 3, 4];
 
   // ARRAY.reduce((accumulator, currentValue, currentIndex) => {
