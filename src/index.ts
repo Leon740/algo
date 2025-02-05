@@ -1,3 +1,3 @@
-import { lc_5 } from '@src/lc/lc_5.ts';
+import { cancellableModule } from '@src/js/promises/3_cancellable.ts';
 
-lc_5();
+cancellableModule();
