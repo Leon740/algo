@@ -1,6 +1,6 @@
 import { log } from '@src/utils/log.ts';
 
-export function cancellableTimeoutModule() {
+export function cancellableModule() {
   const sum = (a?: number = 0, b?: number = 0): number => {
     const isA = typeof a === 'number';
     const isB = typeof b === 'number';
