@@ -1,5 +1,5 @@
 import { log } from '@src/utils/log.ts';
-import { isValidVar } from '../utils/isValirVar.ts';
+import { isValidVar } from '../utils/isValidVar.ts';
 
 export function cancellableIntervalModule() {
   const multiply = (number?: number): false | ((amount?: number) => number) => {

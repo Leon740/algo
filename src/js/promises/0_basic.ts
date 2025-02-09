@@ -17,6 +17,8 @@ export function basicModule() {
     });
   };
 
+  console.group('then');
+  console.group('resolve');
   fetchUser('Leonid', 'Dobrinov', 23)
     .then((data) => {
       console.log('promise resolved');
@@ -29,6 +31,22 @@ export function basicModule() {
     .finally(() => {
       console.log('promise completed');
     });
+  console.groupEnd();
+  console.group('reject');
+  fetchUser('Leon', 'Dobrinov', 23)
+    .then((data) => {
+      console.log('promise resolved');
+      console.log(data);
+    })
+    .catch((error) => {
+      console.log('promise rejected');
+      console.log(error);
+    })
+    .finally(() => {
+      console.log('promise completed');
+    });
+  console.groupEnd();
+  console.groupEnd();
 
   console.log('end');
 }
