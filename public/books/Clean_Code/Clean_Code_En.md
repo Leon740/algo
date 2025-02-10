@@ -74,7 +74,7 @@ LOCATIONS.forEach((currentLocation, index) => {
 ❌
 
 ```ts
-interface ICar {
+interface Car {
   carMake: string;
   carModel: string;
   carColor: string;
@@ -86,7 +86,7 @@ const CAR = {
   carColor: 'n/a'
 };
 
-const paintCar = (car: ICar): ICar => {
+const paintCar = (car: Car): Car => {
   car.carColor = 'black';
   return car;
 };
@@ -96,7 +96,7 @@ const paintedCar = paintCar(CAR);
 ✅
 
 ```ts
-interface ICar {
+interface Car {
   make: string;
   model: string;
   color: string;
@@ -108,7 +108,7 @@ const CAR = {
   color: 'n/a'
 };
 
-const paintCar = (car: ICar): ICar => {
+const paintCar = (car: Car): Car => {
   car.color = 'black';
   return car;
 };
@@ -174,13 +174,13 @@ const isWeekend = (day: Day): boolean => {
   return day === 'Saturday' || day === 'Sunday';
 };
 
-const getWorkingDaysInWeek = (daysOfWeek: Day[]): Day[] => {
+const getWorkingDaysOfWeek = (daysOfWeek: Day[]): Day[] => {
   return daysOfWeek.filter((currentDay) => !isWeekend(currentDay));
 };
-console.log(getWorkingDaysInWeek(DAYS_OF_WEEK));
+console.log(getWorkingDaysOfWeek(DAYS_OF_WEEK));
 
-const getWeekendDaysInWeek = (daysOfWeek: Day[]): Day[] => {
+const getWeekendDaysOfWeek = (daysOfWeek: Day[]): Day[] => {
   return daysOfWeek.filter((currentDay) => isWeekend(currentDay));
 };
-console.log(getWeekendDaysInWeek(DAYS_OF_WEEK));
+console.log(getWeekendDaysOfWeek(DAYS_OF_WEEK));
 ```
