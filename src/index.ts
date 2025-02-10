@@ -1,2 +1,2 @@
-import { basicModule } from '@src/js/promises/0_basic.ts';
-basicModule();
+import { promiseTimeLimitModule } from '@src/js/promises/5_promise_time_limit.ts';
+promiseTimeLimitModule();
