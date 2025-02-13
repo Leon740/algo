@@ -189,8 +189,14 @@ console.log(getWeekendDaysOfWeek(DAYS_OF_WEEK));
 
 ## The less args the better it is
 
-if you have many args it means the function does too much.  
-Instead of args collection use object, this gives more readability and control.
+**if more than 2 args are used, the function does too much.**  
+**Instead of args use object.**
+
+Using object
+
+1. provides better readability
+2. provides more control
+3. linters can highlight the properties not used
 
 ```ts
 interface Person {
@@ -306,4 +312,93 @@ const askAllNotSubscribedAdultUsersToSubscribe = (users: User[]): void => {
 };
 
 console.log(askAllNotSubscribedAdultUsersToSubscribe(USERS));
+```
+
+## Single source of truth
+
+```ts
+interface Car {
+  make: string;
+  model: string;
+  year: string;
+}
+
+const CARS: Car[] = [
+  {
+    make: 'Toyota',
+    model: 'Supra',
+    year: '2008'
+  },
+  {
+    make: 'Toyota',
+    model: 'Aristo',
+    year: '2010'
+  },
+  {
+    make: 'Audi',
+    model: 'A6',
+    year: '2016'
+  },
+  {
+    make: 'Audi',
+    model: 'Q8',
+    year: '2020'
+  }
+];
+```
+
+❌
+
+```ts
+const getToyotas = (cars: Car[]): Car[] => {
+  return cars.filter((currentCar) => currentCar.make === 'Toyota');
+};
+
+const getAudis = (cars: Car[]): Car[] => {
+  return cars.filter((currentCar) => currentCar.make === 'Audi');
+};
+```
+
+✅
+
+```ts
+const getCars = <K extends keyof Car>({
+  cars,
+  key = 'make' as K,
+  value
+}: {
+  cars: Car[];
+  key: K;
+  value: Car[K];
+}): Car[] => {
+  return cars.filter((currentCar) => currentCar[key] === value);
+};
+const audis = getCars({ cars: CARS, key: 'make', value: 'Audi' });
+console.log(audis);
+```
+
+## Do not use flags in parameters
+
+❌
+
+```ts
+function createFile(name, temp) {
+  if (temp) {
+    fs.create(`./temp/${name}`);
+  } else {
+    fs.create(name);
+  }
+}
+```
+
+✅
+
+```ts
+function createFile(name) {
+  fs.create(name);
+}
+
+function createTempFile(name) {
+  createFile(`./temp/${name}`);
+}
 ```
