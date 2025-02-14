@@ -1,2 +1,2 @@
-import { getLastArrayElement } from '@src/js/3_json/2_getLastArrayElement.ts';
-getLastArrayElement({});
+import { promiseAllSettled } from './js/2_promises/3_promiseAllSettled.ts';
+promiseAllSettled();
