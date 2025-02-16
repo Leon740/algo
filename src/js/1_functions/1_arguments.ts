@@ -1,4 +1,4 @@
-import { log } from '@src/utils/log.ts';
+import { log } from '@src/utils/deprecated_log.ts';
 
 export function argumentsModule() {
   type JSONValueT = null | boolean | number | string | JSONValueT[] | { [key: string]: JSONValueT };

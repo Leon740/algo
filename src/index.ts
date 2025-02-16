@@ -1,16 +1,7 @@
-const NAME = 'Leonid Dobrinov';
+import { myObjectTests } from './objects/object/object.test.ts';
+import { runTests } from './utils/log.ts';
 
-const getFirstNameAndLastName_Bad = () => {
-  return NAME.split(' ');
-};
-console.log(getFirstNameAndLastName_Bad());
-
-const getFirstNameAndLastName = (name: string): { firstName: string; lastName: string } => {
-  const separatedNames = name.split(' ');
-
-  return {
-    firstName: separatedNames[0],
-    lastName: separatedNames[1]
-  };
-};
-console.log(getFirstNameAndLastName(NAME));
+runTests({
+  name: 'myObject',
+  tests: myObjectTests
+});

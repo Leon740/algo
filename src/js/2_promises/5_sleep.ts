@@ -1,4 +1,4 @@
-import { log } from '@src/utils/log.ts';
+import { log } from '@src/utils/deprecated_log.ts';
 
 // sleep = function which resolves value in timeoutMs
 interface SleepArgs<V> {

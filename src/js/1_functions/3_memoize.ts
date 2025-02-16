@@ -2,7 +2,7 @@
 // if a function was called already, return it's result
 // 2functions: sum, factorial
 
-import { log } from '@src/utils/log.ts';
+import { log } from '@src/utils/deprecated_log.ts';
 
 export function memoizeModule() {
   const isUndefined = (variable?: unknown): boolean => {

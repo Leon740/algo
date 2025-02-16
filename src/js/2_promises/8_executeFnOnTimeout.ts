@@ -1,4 +1,4 @@
-import { sum } from '@src/utils/sum.ts';
+import { sum } from '@src/utils/example_functions/sum/sum.ts';
 
 type ExecutableFunction = (...args: unknown[]) => unknown;
 
