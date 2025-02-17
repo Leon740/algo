@@ -1,10 +1,10 @@
-export const values = <Value>({ object }: { object: object }): Value[] => {
-  const values: Value[] = [];
+export const values = <Value>({ object }: { object: Record<string, Value> }): Value[] => {
+  const allValues: Value[] = [];
 
   for (const currentKey in object) {
     const currentValue = object[currentKey];
-    values.push(currentValue);
+    allValues.push(currentValue);
   }
 
-  return values;
+  return allValues;
 };

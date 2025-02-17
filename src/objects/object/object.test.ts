@@ -1,101 +1,94 @@
 import { type Test } from '@src/utils/log.ts';
+import { OBJECTS_EXAMPLES } from '../constants.ts';
+import { entriesToTest } from '../fromEntries/fromEntries.test.ts';
+import { fromEntries } from '../fromEntries/fromEntries.ts';
 import { MyObject } from './object.ts';
 
-const OBJECTS_TO_TEST = {
-  empty: {},
-  string: {
-    keyA: 'valueA'
-  },
-  number: {
-    one: 1,
-    two: 2,
-    three: 3
-  },
-  boolean: {
-    isAdult: false
-  },
-  nested: {
-    nestedA: {
-      a: 'a'
-    },
-    nestedB: {
-      b: 'b'
-    }
-  }
-};
-
-const CREATED_OBJECTS = {
-  empty: new MyObject<string>({ sourceObject: OBJECTS_TO_TEST.empty }),
-  string: new MyObject<string>({ sourceObject: OBJECTS_TO_TEST.string }),
-  number: new MyObject<number>({ sourceObject: OBJECTS_TO_TEST.number }),
-  boolean: new MyObject<boolean>({ sourceObject: OBJECTS_TO_TEST.boolean }),
-  nested: new MyObject<object>({ sourceObject: OBJECTS_TO_TEST.nested })
+const createdObjects = {
+  empty: new MyObject<string>({ sourceObject: OBJECTS_EXAMPLES.empty }),
+  string: new MyObject<string>({ sourceObject: OBJECTS_EXAMPLES.string }),
+  number: new MyObject<number>({ sourceObject: OBJECTS_EXAMPLES.number }),
+  boolean: new MyObject<boolean>({ sourceObject: OBJECTS_EXAMPLES.boolean }),
+  nested: new MyObject<object>({ sourceObject: OBJECTS_EXAMPLES.nested })
 };
 
 const initTests: Test[] = [
   {
     name: 'init: empty object',
-    expected: OBJECTS_TO_TEST.empty,
-    actual: CREATED_OBJECTS.empty.store
+    expected: OBJECTS_EXAMPLES.empty,
+    actual: createdObjects.empty.store
   },
   {
     name: 'init: object with string values',
-    expected: OBJECTS_TO_TEST.string,
-    actual: CREATED_OBJECTS.string.store
+    expected: OBJECTS_EXAMPLES.string,
+    actual: createdObjects.string.store
   },
   {
     name: 'init: object with number values',
-    expected: OBJECTS_TO_TEST.number,
-    actual: CREATED_OBJECTS.number.store
+    expected: OBJECTS_EXAMPLES.number,
+    actual: createdObjects.number.store
   },
   {
     name: 'init: object with boolean values',
-    expected: OBJECTS_TO_TEST.boolean,
-    actual: CREATED_OBJECTS.boolean.store
+    expected: OBJECTS_EXAMPLES.boolean,
+    actual: createdObjects.boolean.store
   },
   {
     name: 'init: object with nested objects',
-    expected: OBJECTS_TO_TEST.nested,
-    actual: CREATED_OBJECTS.nested.store
+    expected: OBJECTS_EXAMPLES.nested,
+    actual: createdObjects.nested.store
   }
 ];
 
 const keysTests: Test[] = [
   {
-    name: 'empty array of object keys if object is empty',
-    expected: Object.keys(CREATED_OBJECTS.empty.store),
-    actual: CREATED_OBJECTS.empty.keys()
+    name: 'empty keys array if object is empty',
+    expected: Object.keys(createdObjects.empty.store),
+    actual: createdObjects.empty.keys()
   },
   {
-    name: 'full array of object keys if object contains keys',
-    expected: Object.keys(CREATED_OBJECTS.nested.store),
-    actual: CREATED_OBJECTS.nested.keys()
+    name: 'full array of object keys if object contains entries',
+    expected: Object.keys(createdObjects.nested.store),
+    actual: createdObjects.nested.keys()
   }
 ];
 
 const valuesTests: Test[] = [
   {
-    name: 'empty array of object values if object is empty',
-    expected: Object.values(CREATED_OBJECTS.empty.store),
-    actual: CREATED_OBJECTS.empty.values()
+    name: 'empty values array if object is empty',
+    expected: Object.values(createdObjects.empty.store),
+    actual: createdObjects.empty.values()
   },
   {
-    name: 'full array of object values if object contains values',
-    expected: Object.values(CREATED_OBJECTS.nested.store),
-    actual: CREATED_OBJECTS.nested.values()
+    name: 'full array of object values if object contains entries',
+    expected: Object.values(createdObjects.nested.store),
+    actual: createdObjects.nested.values()
   }
 ];
 
 const entriesTests: Test[] = [
   {
-    name: 'empty array of object entries if object is empty',
-    expected: Object.entries(CREATED_OBJECTS.empty.store),
-    actual: CREATED_OBJECTS.empty.entries()
+    name: 'empty entries array if object is empty',
+    expected: Object.entries(createdObjects.empty.store),
+    actual: createdObjects.empty.entries()
   },
   {
     name: 'full array of object entries if object contains entries',
-    expected: Object.entries(CREATED_OBJECTS.nested.store),
-    actual: CREATED_OBJECTS.nested.entries()
+    expected: Object.entries(createdObjects.nested.store),
+    actual: createdObjects.nested.entries()
+  }
+];
+
+const fromEntriesTests: Test[] = [
+  {
+    name: 'empty object if entries is empty',
+    expected: Object.fromEntries(entriesToTest.empty),
+    actual: fromEntries({ entries: entriesToTest.empty })
+  },
+  {
+    name: 'full object if entries is full',
+    expected: Object.fromEntries(entriesToTest.regular),
+    actual: fromEntries({ entries: entriesToTest.regular })
   }
 ];
 
@@ -103,12 +96,12 @@ const isEmptyTests: Test[] = [
   {
     name: 'isEmpty: true if object is empty',
     expected: true,
-    actual: CREATED_OBJECTS.empty.isEmpty()
+    actual: createdObjects.empty.isEmpty()
   },
   {
     name: 'isEmpty: false if object is full',
     expected: false,
-    actual: CREATED_OBJECTS.string.isEmpty()
+    actual: createdObjects.string.isEmpty()
   }
 ];
 
@@ -117,5 +110,6 @@ export const myObjectTests = [
   ...keysTests,
   ...valuesTests,
   ...entriesTests,
+  ...fromEntriesTests,
   ...isEmptyTests
 ];

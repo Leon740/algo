@@ -1,4 +1,5 @@
 import { entries } from '../entries/entries.ts';
+import { fromEntries } from '../fromEntries/fromEntries.ts';
 import { isEmpty } from '../isEmpty/isEmpty.ts';
 import { keys } from '../keys/keys.ts';
 import { values } from '../values/values.ts';
@@ -24,6 +25,10 @@ export class MyObject<Value> {
 
   entries() {
     return entries<Value>({ object: this.store });
+  }
+
+  fromEntries({ entries }: { entries: [string, Value][] }) {
+    return fromEntries<Value>({ entries });
   }
 
   isEmpty() {

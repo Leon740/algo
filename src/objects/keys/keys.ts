@@ -1,11 +1,11 @@
 type Key = string;
 
 export const keys = ({ object }: { object: object }): Key[] => {
-  const keys: Key[] = [];
+  const allKeys: Key[] = [];
 
   for (const currentKey in object) {
-    keys.push(currentKey);
+    allKeys.push(currentKey);
   }
 
-  return keys;
+  return allKeys;
 };

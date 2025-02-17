@@ -1,15 +1,15 @@
 type Key = string;
 type Entry<Value> = [Key, Value];
 
-export const entries = <Value>({ object }: { object: object }): Entry<Value>[] => {
-  const entries: Entry<Value>[] = [];
+export const entries = <Value>({ object }: { object: Record<string, Value> }): Entry<Value>[] => {
+  const allEntries: Entry<Value>[] = [];
 
   for (const currentKey in object) {
     const currentValue = object[currentKey];
-    const currentEntry = [currentKey, currentValue];
+    const currentEntry: Entry<Value> = [currentKey, currentValue];
 
-    entries.push(currentEntry);
+    allEntries.push(currentEntry);
   }
 
-  return entries;
+  return allEntries;
 };
