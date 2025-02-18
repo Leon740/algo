@@ -1,7 +1,7 @@
-import { myObjectTests } from './objects/object/object.test.ts';
+import { reduceTests } from './arrays/reduce/reduce.test.ts';
 import { runTests } from './utils/log.ts';
 
 runTests({
-  name: 'myObject',
-  tests: myObjectTests
+  name: 'reduceTests',
+  tests: reduceTests
 });

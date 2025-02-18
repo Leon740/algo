@@ -1,4 +1,4 @@
-export const values = <Value>({ object }: { object: Record<string, Value> }): Value[] => {
+export const values = <Value>(object: Record<string, Value>): Value[] => {
   const allValues: Value[] = [];
 
   for (const currentKey in object) {

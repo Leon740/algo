@@ -6,11 +6,11 @@ export const keysTests: Test[] = [
   {
     name: 'empty keys array if object is empty',
     expected: Object.keys(OBJECTS_EXAMPLES.empty),
-    actual: keys({ object: OBJECTS_EXAMPLES.empty })
+    actual: keys(OBJECTS_EXAMPLES.empty)
   },
   {
     name: 'full array of object keys if object contains entries',
     expected: Object.keys(OBJECTS_EXAMPLES.regular),
-    actual: keys({ object: OBJECTS_EXAMPLES.regular })
+    actual: keys(OBJECTS_EXAMPLES.regular)
   }
 ];

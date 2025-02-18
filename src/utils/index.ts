@@ -1,4 +1,3 @@
-import { isArray } from './isArray.ts';
-import { type Test, runTests } from './log1.ts';
+import { type Test, runTests } from './log.ts';
 
-export { isArray, type Test, runTests };
+export { type Test, runTests };

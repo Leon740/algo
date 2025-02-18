@@ -17,11 +17,11 @@ export const fromEntriesTests: Test[] = [
   {
     name: 'empty object if entries is empty',
     expected: Object.fromEntries(entriesToTest.empty),
-    actual: fromEntries({ entries: entriesToTest.empty })
+    actual: fromEntries(entriesToTest.empty)
   },
   {
     name: 'full object if entries is full',
     expected: Object.fromEntries(entriesToTest.regular),
-    actual: fromEntries({ entries: entriesToTest.regular })
+    actual: fromEntries(entriesToTest.regular)
   }
 ];
