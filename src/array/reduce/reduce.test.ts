@@ -1,12 +1,7 @@
-import { type User, USERS } from '@src/constants.ts';
+import { type User } from '@src/constants.ts';
+import { ARRAYS } from '@src/constants.ts';
 import { type Test } from '@src/utils/log.ts';
 import { type Callback, reduce } from './reduce.ts';
-
-const ARRAYS = {
-  empty: [],
-  numbers: [0, 1, 2, 3, 4],
-  users: USERS
-};
 
 type RegularUsersMapRecord = Record<string, User>;
 type BirthYearUsersMapRecord = Record<string, User[]>;

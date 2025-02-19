@@ -1,13 +1,7 @@
-import { type User, USERS } from '@src/constants.ts';
+import { type User } from '@src/constants.ts';
+import { ARRAYS } from '@src/constants.ts';
 import { type Test } from '@src/utils/log.ts';
 import { type Callback, map } from './map.ts';
-
-const ARRAYS = {
-  empty: [],
-  numbers: [0, 1, 2, 3],
-  letters: ['a', 'b', 'c'],
-  users: USERS
-};
 
 type Letter = Record<string, string>;
 

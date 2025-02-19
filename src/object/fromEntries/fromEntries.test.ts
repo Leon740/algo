@@ -1,7 +1,7 @@
 import { Test } from '@src/utils/log.ts';
 import { fromEntries } from './fromEntries.ts';
 
-export const entriesToTest: Record<string, [string, any][]> = {
+const entriesToTest: Record<string, [string, any][]> = {
   empty: [],
   regular: [
     ['a', 'a'],
