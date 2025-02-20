@@ -23,7 +23,7 @@ export const USERS: User[] = [
 ];
 
 export const ARRAYS = {
-  empty: [],
+  empty: [] as string[],
   numbers: [0, 1, 2, 3],
   letters: ['a', 'b', 'c'],
   users: USERS

@@ -1,11 +1,11 @@
 import { push } from '../1_push/push.ts';
 
-export const concat = <ArrayItem>(...sources: ArrayItem[][]): ArrayItem[] => {
+export const concat = <ArrayItem>({ arrays }: { arrays: ArrayItem[][] }): ArrayItem[] => {
   const result: ArrayItem[] = [];
 
-  for (let i = 0; i < sources.length; i++) {
-    for (let k = 0; k < sources[i].length; k++) {
-      push(result, sources[i][k]);
+  for (let i = 0; i < arrays.length; i++) {
+    for (let k = 0; k < arrays[i].length; k++) {
+      push<ArrayItem>({ array: result, newArrayItem: arrays[i][k] });
     }
   }
 

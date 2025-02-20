@@ -6,28 +6,30 @@ export const isEmptyTests: Test[] = [
   {
     name: 'true if array is empty',
     expected: true,
-    actual: isEmpty(ARRAYS.empty)
+    actual: isEmpty({ object: ARRAYS.empty })
   },
   {
     name: 'false if array is full',
     expected: false,
-    actual: isEmpty(ARRAYS.numbers)
+    actual: isEmpty({ object: ARRAYS.numbers })
   },
   {
     name: 'true if object is empty',
     expected: true,
-    actual: isEmpty(OBJECTS.empty)
+    actual: isEmpty({ object: OBJECTS.empty })
   },
   {
     name: 'false if object is full',
     expected: false,
-    actual: isEmpty(OBJECTS.nested)
+    actual: isEmpty({ object: OBJECTS.nested })
   },
   {
     name: 'false if object has length property { length: 2 }',
     expected: false,
     actual: isEmpty({
-      length: 2
+      object: {
+        length: 2
+      }
     })
   }
 ];

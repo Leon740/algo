@@ -1,4 +1,4 @@
-import { isEmpty } from '@src/object/isEmpty/isEmpty.ts';
+import { isEmpty } from '@src/object/0_isEmpty/isEmpty.ts';
 
 export type Callback<SourceItem, Result> = (
   // eslint-disable-next-line no-unused-vars

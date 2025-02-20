@@ -6,11 +6,11 @@ export const entriesTests: Test[] = [
   {
     name: 'empty entries array if object is empty',
     expected: Object.entries(OBJECTS.empty),
-    actual: entries(OBJECTS.empty)
+    actual: entries({ object: OBJECTS.empty })
   },
   {
     name: 'full array of object entries if object contains entries',
     expected: Object.entries(OBJECTS.regular),
-    actual: entries(OBJECTS.regular)
+    actual: entries({ object: OBJECTS.regular })
   }
 ];
