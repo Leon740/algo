@@ -1,4 +1,4 @@
-import { isEmpty } from '@src/object/0_isEmpty/isEmpty.ts';
+import { validateIndexes } from '../0_validateIndexes/validateIndexes.ts';
 import { push } from '../1_push/push.ts';
 
 export type SliceArgs<ArrayItem> = {
@@ -16,51 +16,15 @@ export const slice = <ArrayItem>({
   startIndex?: number;
   endIndex?: number;
 }): [] | ArrayItem[] => {
-  if (isEmpty({ object: array })) return [];
+  const { startIndex: startI, endIndex: endI } = validateIndexes({ array, startIndex, endIndex });
 
-  if (!startIndex) {
-    startIndex = 0;
-  }
-  if (!endIndex) {
-    endIndex = array.length;
-  }
-
-  // + startIndex OUT
-  if (startIndex >= array.length) {
+  if (startI === 0 && endI === 0) {
     return [];
   }
 
-  // - startIndex OUT,
-  if (startIndex < -array.length) {
-    startIndex = 0;
-  }
-
-  // - startIndex IN,
-  if (-array.length <= startIndex && startIndex < 0) {
-    startIndex = startIndex + array.length;
-  }
-
-  // + endIndex OUT
-  if (endIndex >= array.length) {
-    endIndex = array.length;
-  }
-
-  // - endIndex OUT
-  if (endIndex < -array.length) {
-    endIndex = 0;
-  }
-
-  // - endIndex IN
-  if (-array.length <= endIndex && endIndex < 0) {
-    endIndex = endIndex + array.length;
-  }
-
-  // +- startIndex >= endIndex,
-  if (startIndex >= endIndex) return [];
-
   const result: ArrayItem[] = [];
 
-  for (let i = startIndex; i < endIndex; i++) {
+  for (let i = startI; i < endI; i++) {
     push<ArrayItem>({ array: result, newArrayItem: array[i] });
   }
 
