@@ -4,7 +4,7 @@ import { concat } from './concat.ts';
 
 export const concatTests: Test[] = [
   {
-    name: 'concat arrays',
+    name: 'concats arrays',
     expected: ARRAYS.numbers.concat(ARRAYS.numbers, ARRAYS.numbers),
     actual: concat({ arrays: [ARRAYS.numbers, ARRAYS.numbers, ARRAYS.numbers] })
   }
