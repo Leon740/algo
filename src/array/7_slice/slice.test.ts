@@ -1,6 +1,20 @@
 import { ARRAYS } from '@src/constants.ts';
 import { type Test } from '@src/utils/log.ts';
-import { slice } from './slice.ts';
+import { type SliceArgs, slice } from './slice.ts';
+
+const sliceTestItem = ({
+  array,
+  startIndex,
+  endIndex
+}: SliceArgs<number>): { expected: unknown; actual: unknown } => {
+  return {
+    expected: array.slice(startIndex, endIndex),
+    actual: slice<number>({ array, startIndex, endIndex })
+  };
+};
+
+const numbers = ARRAYS.numbers;
+const numbersLength = numbers.length;
 
 export const sliceTests: Test[] = [
   {
@@ -10,77 +24,70 @@ export const sliceTests: Test[] = [
   },
   {
     name: 'startIndex and endIndex not specified, [0 ... array.length]',
-    expected: ARRAYS.numbers.slice(),
-    actual: slice<number>({ array: ARRAYS.numbers })
+    ...sliceTestItem({ array: numbers })
   },
   {
-    // startIndex positive OUT of range
+    // + startIndex OUT
     name: 'startIndex >= array.length, []',
-    expected: ARRAYS.numbers.slice(ARRAYS.numbers.length),
-    actual: slice<number>({ array: ARRAYS.numbers, startIndex: ARRAYS.numbers.length })
+    ...sliceTestItem({ array: numbers, startIndex: numbersLength + 1 })
   },
   {
-    // startIndex positive IN of range,
+    // + startIndex IN
     name: 'startIndex < array.length, [startIndex ... endIndex]',
-    expected: ARRAYS.numbers.slice(ARRAYS.numbers.length - 1),
-    actual: slice<number>({ array: ARRAYS.numbers, startIndex: ARRAYS.numbers.length - 1 })
+    ...sliceTestItem({ array: numbers, startIndex: numbersLength - 1 })
   },
   {
-    // startIndex negative OUT of range
+    // - startIndex OUT,
     name: 'startIndex < -array.length, [0 ... endIndex]',
-    expected: ARRAYS.numbers.slice(-ARRAYS.numbers.length - 1),
-    actual: slice<number>({ array: ARRAYS.numbers, startIndex: -ARRAYS.numbers.length - 1 })
+    ...sliceTestItem({ array: numbers, startIndex: -numbersLength - 1 })
   },
   {
-    // startIndex negative IN range
-    name: '-array.length <= startIndex < 0 , [startIndex + array.length ... endIndex]',
-    expected: ARRAYS.numbers.slice(-ARRAYS.numbers.length + 1),
-    actual: slice<number>({ array: ARRAYS.numbers, startIndex: -ARRAYS.numbers.length + 1 })
+    // - startIndex IN,
+    name: '-array.length <= startIndex < 0, [startIndex + array.length ... endIndex]',
+    ...sliceTestItem({ array: numbers, startIndex: -numbersLength + 1 })
   },
   {
-    // endIndex positive OUT of range
+    // + endIndex OUT
     name: 'endIndex >= array.length, [startIndex ... array.length]',
-    expected: ARRAYS.numbers.slice(undefined, ARRAYS.numbers.length),
-    actual: slice<number>({
-      array: ARRAYS.numbers,
-      endIndex: ARRAYS.numbers.length
-    })
+    ...sliceTestItem({ array: numbers, endIndex: numbersLength + 1 })
   },
   {
-    // endIndex positive IN of range
+    // + endIndex IN
     name: 'endIndex < array.length, [startIndex ... endIndex]',
-    expected: ARRAYS.numbers.slice(undefined, ARRAYS.numbers.length - 1),
-    actual: slice<number>({
-      array: ARRAYS.numbers,
-      endIndex: ARRAYS.numbers.length - 1
-    })
+    ...sliceTestItem({ array: numbers, endIndex: numbersLength - 1 })
   },
   {
-    // endIndex negative OUT of range
+    // - endIndex OUT
     name: 'endIndex < -array.length, []',
-    expected: ARRAYS.numbers.slice(undefined, -ARRAYS.numbers.length - 1),
-    actual: slice<number>({
-      array: ARRAYS.numbers,
-      endIndex: -ARRAYS.numbers.length - 1
+    ...sliceTestItem({
+      array: numbers,
+      endIndex: -numbersLength - 1
     })
   },
   {
-    // endIndex negative IN of range
-    name: '-array.length <= endIndex < 0, [startIndex .... endIndex + array.length]',
-    expected: ARRAYS.numbers.slice(undefined, -ARRAYS.numbers.length + 1),
-    actual: slice<number>({
-      array: ARRAYS.numbers,
-      endIndex: -ARRAYS.numbers.length + 1
+    // - endIndex IN
+    name: '-array.length <= endIndex < 0, [startIndex ... endIndex + array.length]',
+    ...sliceTestItem({
+      array: numbers,
+      endIndex: -numbersLength + 1
     })
   },
   {
-    // startIndex >= endIndex,
-    name: 'startIndex > =endIndex, []',
-    expected: ARRAYS.numbers.slice(2, 1),
-    actual: slice<number>({
-      array: ARRAYS.numbers,
+    // + startIndex >= endIndex,
+    name: '+ startIndex >= endIndex, []',
+    ...sliceTestItem({
+      array: numbers,
       startIndex: 2,
       endIndex: 1
+    })
+  },
+  {
+    // - startIndex >= endIndex,
+    name: '- startIndex >= endIndex, []',
+    ...sliceTestItem({
+      array: numbers,
+      startIndex: -1,
+      endIndex: -2
     })
   }
 ];

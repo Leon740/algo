@@ -1,6 +1,12 @@
 import { isEmpty } from '@src/object/0_isEmpty/isEmpty.ts';
 import { push } from '../1_push/push.ts';
 
+export type SliceArgs<ArrayItem> = {
+  array: ArrayItem[];
+  startIndex?: number;
+  endIndex?: number;
+};
+
 export const slice = <ArrayItem>({
   array,
   startIndex,
@@ -19,36 +25,37 @@ export const slice = <ArrayItem>({
     endIndex = array.length;
   }
 
-  // startIndex positive OUT of range
+  // + startIndex OUT
   if (startIndex >= array.length) {
     return [];
   }
 
-  // startIndex negative OUT of range
+  // - startIndex OUT,
   if (startIndex < -array.length) {
     startIndex = 0;
   }
 
-  // startIndex negative IN range
+  // - startIndex IN,
   if (-array.length <= startIndex && startIndex < 0) {
     startIndex = startIndex + array.length;
   }
 
-  // endIndex positive OUT of range
+  // + endIndex OUT
   if (endIndex >= array.length) {
     endIndex = array.length;
   }
 
-  // endIndex negative OUT of range
+  // - endIndex OUT
   if (endIndex < -array.length) {
     endIndex = 0;
   }
 
-  // endIndex negative IN of range
+  // - endIndex IN
   if (-array.length <= endIndex && endIndex < 0) {
     endIndex = endIndex + array.length;
   }
 
+  // +- startIndex >= endIndex,
   if (startIndex >= endIndex) return [];
 
   const result: ArrayItem[] = [];
