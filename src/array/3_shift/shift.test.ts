@@ -2,11 +2,11 @@ import { ARRAYS } from '@src/constants.ts';
 import { type Test } from '@src/utils/log.ts';
 import { shift } from './shift.ts';
 
-const array_0 = [...ARRAYS.numbers];
-const array_1 = [...ARRAYS.numbers];
+const arrayExpected = [...ARRAYS.numbers];
+const arrayActual = [...ARRAYS.numbers];
 
-const shiftedNumber_0 = array_0.shift();
-const shiftedNumber_1 = shift<number>({ array: array_1 });
+const shiftedNumberExpected = arrayExpected.shift();
+const shiftedNumberActual = shift<number>({ array: arrayActual });
 
 export const shiftTests: Test[] = [
   {
@@ -16,12 +16,12 @@ export const shiftTests: Test[] = [
   },
   {
     name: 'removes first item of array, returns this item',
-    expected: shiftedNumber_0,
-    actual: shiftedNumber_1
+    expected: shiftedNumberExpected,
+    actual: shiftedNumberActual
   },
   {
     name: 'removes first item of array, mutates array',
-    expected: array_0,
-    actual: array_1
+    expected: arrayExpected,
+    actual: arrayActual
   }
 ];

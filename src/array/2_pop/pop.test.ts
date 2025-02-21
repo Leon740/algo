@@ -2,11 +2,11 @@ import { ARRAYS } from '@src/constants.ts';
 import { type Test } from '@src/utils/log.ts';
 import { pop } from './pop.ts';
 
-const array_0 = [...ARRAYS.numbers];
-const array_1 = [...ARRAYS.numbers];
+const arrayExpected = [...ARRAYS.numbers];
+const arrayActual = [...ARRAYS.numbers];
 
-const poppedNumber_0 = array_0.pop();
-const poppedNumber_1 = pop<number>({ array: array_1 });
+const poppedNumberExpected = arrayExpected.pop();
+const poppedNumberActual = pop<number>({ array: arrayActual });
 
 export const popTests: Test[] = [
   {
@@ -16,12 +16,12 @@ export const popTests: Test[] = [
   },
   {
     name: 'removes last item of array, returns this item',
-    expected: poppedNumber_0,
-    actual: poppedNumber_1
+    expected: poppedNumberExpected,
+    actual: poppedNumberActual
   },
   {
     name: 'removes last item of array, mutates array',
-    expected: array_0,
-    actual: array_1
+    expected: arrayExpected,
+    actual: arrayActual
   }
 ];

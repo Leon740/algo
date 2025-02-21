@@ -1,7 +1,7 @@
-import { unshiftTests } from './array/4_unshift/unshift.test.ts';
+import { sliceTests } from './array/7_slice/slice.test.ts';
 import { runTests } from './utils/log.ts';
 
 runTests({
-  name: 'unshiftTests',
-  tests: unshiftTests
+  name: 'sliceTests',
+  tests: sliceTests
 });
