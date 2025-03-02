@@ -1,7 +1,7 @@
-import { spliceTests } from './array/8_splice/splice.test.ts';
+import { allTestsOfIsArrayLike } from './array/0_checking/1_isArrayLike/isArrayLike.test.ts';
 import { runTests } from './utils/log.ts';
 
 runTests({
-  name: 'spliceTests',
-  tests: spliceTests
+  name: 'allTestsOfIsArrayLike',
+  tests: allTestsOfIsArrayLike
 });

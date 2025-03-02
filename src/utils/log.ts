@@ -4,6 +4,8 @@ export interface Test {
   actual: unknown;
 }
 
+export type TestResult = Omit<Test, 'name'>;
+
 export const log = ({ name, expected, actual }: Test): void => {
   console.log('');
   console.log(name);
