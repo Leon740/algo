@@ -1,6 +1,6 @@
 export const isArray = (arg: unknown): boolean => {
-  const argIsNotDefined = arg === null || arg === undefined || typeof arg === 'undefined';
-  if (argIsNotDefined) {
+  const isArg = arg !== null || arg !== undefined || typeof arg !== 'undefined';
+  if (!isArg) {
     return false;
   }
 

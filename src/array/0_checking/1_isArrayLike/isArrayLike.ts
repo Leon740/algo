@@ -1,6 +1,6 @@
 export const isArrayLike = (object: unknown): boolean => {
-  const isNotObject = object === null || object === undefined || typeof object !== 'object';
-  if (isNotObject) {
+  const isObject = object !== null && object !== undefined && typeof object === 'object';
+  if (!isObject) {
     return false;
   }
 
