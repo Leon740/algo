@@ -1,5 +1,5 @@
-import { validateIndexes } from '../0_validateIndexes/validateIndexes.ts';
 import { push } from '../1_push/push.ts';
+import { validateIndexes } from '../6_validateIndexes/validateIndexes.ts';
 
 export type SliceArgs<ArrayItem> = {
   array: ArrayItem[];
@@ -18,14 +18,15 @@ export const slice = <ArrayItem>({
 }): [] | ArrayItem[] => {
   const { startIndex: startI, endIndex: endI } = validateIndexes({ array, startIndex, endIndex });
 
-  if (startI === 0 && endI === 0) {
+  const isInvalidIndexes = startI === 0 && endI === 0;
+  if (isInvalidIndexes) {
     return [];
   }
 
   const result: ArrayItem[] = [];
 
   for (let i = startI; i < endI; i++) {
-    push<ArrayItem>({ array: result, newArrayItem: array[i] });
+    push<ArrayItem>({ array: result, newItem: array[i] });
   }
 
   return result;

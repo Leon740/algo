@@ -6,7 +6,7 @@ const arrayExpected = [...ARRAYS.empty];
 const arrayActual = [...ARRAYS.empty];
 
 const newArrayLengthExpected = arrayExpected.push('a');
-const newArrayLengthActual = push<string>({ array: arrayActual, newArrayItem: 'a' });
+const newArrayLengthActual = push<string>({ array: arrayActual, newItem: 'a' });
 
 export const pushTests: Test[] = [
   {

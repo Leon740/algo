@@ -6,9 +6,9 @@ const arrayExpected = [...ARRAYS.empty];
 const arrayActual = [...ARRAYS.empty];
 
 const newArrayLengthExpected = arrayExpected.unshift('a');
-const newArrayLengthActual = unshift<string>({ array: arrayActual, newArrayItem: 'a' });
+const newArrayLengthActual = unshift<string>({ array: arrayActual, newItem: 'a' });
 
-unshift<number>({ array: ARRAYS.numbers, newArrayItem: -1 });
+unshift<number>({ array: ARRAYS.numbers, newItem: -1 });
 
 export const unshiftTests: Test[] = [
   {

@@ -5,7 +5,7 @@ export const concat = <ArrayItem>({ arrays }: { arrays: ArrayItem[][] }): ArrayI
 
   for (let i = 0; i < arrays.length; i++) {
     for (let k = 0; k < arrays[i].length; k++) {
-      push<ArrayItem>({ array: result, newArrayItem: arrays[i][k] });
+      push<ArrayItem>({ array: result, newItem: arrays[i][k] });
     }
   }
 

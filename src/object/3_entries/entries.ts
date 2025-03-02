@@ -1,3 +1,5 @@
+import { push } from '@src/array/1_push/push.ts';
+
 type Key = string;
 type Entry<Value> = [Key, Value];
 
@@ -8,7 +10,7 @@ export const entries = <Value>({ object }: { object: Record<Key, Value> }): Entr
     const currentValue = object[currentKey];
     const currentEntry: Entry<Value> = [currentKey, currentValue];
 
-    allEntries.push(currentEntry);
+    push({ array: allEntries, newItem: currentEntry });
   }
 
   return allEntries;

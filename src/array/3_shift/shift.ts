@@ -1,4 +1,5 @@
 import { isEmpty } from '@src/object/0_isEmpty/isEmpty.ts';
+import { pop } from '../2_pop/pop.ts';
 
 export const shift = <ArrayItem>({ array }: { array: ArrayItem[] }): [] | ArrayItem => {
   if (isEmpty({ object: array })) return [];
@@ -9,7 +10,7 @@ export const shift = <ArrayItem>({ array }: { array: ArrayItem[] }): [] | ArrayI
     array[i] = array[i + 1];
   }
 
-  array.length--;
+  pop({ array });
 
   return firstArrayItem;
 };

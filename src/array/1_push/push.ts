@@ -1,12 +1,12 @@
 export const push = <ArrayItem>({
   array,
-  newArrayItem
+  newItem
 }: {
   array: ArrayItem[];
-  newArrayItem: ArrayItem;
+  newItem: ArrayItem;
 }): number => {
-  const indexForNewArrayItem = array.length;
-  array[indexForNewArrayItem] = newArrayItem;
+  const indexForNewItem = array.length;
+  array[indexForNewItem] = newItem;
 
   const newArrayLength = array.length;
   return newArrayLength;

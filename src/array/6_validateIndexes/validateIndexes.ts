@@ -1,5 +1,11 @@
 import { isEmpty } from '@src/object/0_isEmpty/isEmpty.ts';
 
+export type ValidateIndexesArgs = {
+  array: any[];
+  startIndex?: number;
+  endIndex?: number;
+};
+
 export const validateIndexes = ({
   array,
   startIndex,
@@ -31,7 +37,6 @@ export const validateIndexes = ({
 
   // + startIndex OUT
   if (startIndex >= array.length) {
-    // return [];
     throwInvalidIndexes();
   }
 
@@ -62,7 +67,6 @@ export const validateIndexes = ({
 
   // +- startIndex >= endIndex,
   if (startIndex >= endIndex) {
-    // return [];
     throwInvalidIndexes();
   }
 

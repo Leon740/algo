@@ -13,7 +13,7 @@ const sliceTestItem = ({
   };
 };
 
-const numbers = ARRAYS.numbers;
+const numbers = [...ARRAYS.numbers];
 const numbersLength = numbers.length;
 
 export const sliceTests: Test[] = [
