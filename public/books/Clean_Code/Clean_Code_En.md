@@ -122,7 +122,6 @@ console.log(paintedCar);
 
 - Tday -> Day
   no need to mention it's type, IDE knows it
-
 - ALL_DAYS -> DAYS_OF_WEEK
 - days -> daysOfWeek
 - day -> currentDay
@@ -181,7 +180,7 @@ const getWeekendDaysOfWeek = (daysOfWeek: Day[]): Day[] => {
 console.log(getWeekendDaysOfWeek(DAYS_OF_WEEK));
 ```
 
-# 2 Functions
+# 2. Functions
 
 ## The less args the better it is
 
@@ -210,7 +209,8 @@ const createPerson_0 = (firstName: string, lastName: string, age: number): Perso
   };
 };
 
-const createdIvan = createPerson_0('Ivan', 'Petrov', 23);
+// firstName and lastName broken order
+const createdIvan = createPerson_0('Petrov', 'Ivan', 23);
 console.log(createdIvan);
 
 // ✅
@@ -456,7 +456,7 @@ const addToCart_1 = ({
 console.log(addToCart_1({ product: BMW, currentCart: cart }));
 ```
 
-## Use functions over loops
+## Use functions (declarative) over loops (imperative)
 
 ```ts
 interface TeamMember {
@@ -510,4 +510,166 @@ const isLoadingState = state === 'loading';
 if (isLoadingState) {
   displayLoader();
 }
+```
+
+# 3. Objects
+
+## Use getters and setters
+
+_Problem_
+Class state can be modified outside, which leads to side effects and unpredictable behavior.
+_Solution_
+Use private properties, encapsulate logic inside, have a set of actions to modify it, defined inside.
+
+```ts
+const DOWN_PAYMENT = 1000;
+
+const SHOES = {
+  name: 'Shoes',
+  price: DOWN_PAYMENT + 150
+};
+
+// ❌
+class BankAccount_0 {
+  private _balance: number;
+
+  constructor(downPayment: number = 1000) {
+    this._balance = downPayment;
+  }
+
+  buy(price: number = 0): number {
+    if (price < this._balance) {
+      this._balance -= price;
+    } else {
+      console.log('Not enough money on your balance');
+    }
+    return this._balance;
+  }
+}
+const bankOfAmerica = new BankAccount_0(DOWN_PAYMENT);
+
+// ✅
+class BankAccount_1 {
+  private _balance: number;
+
+  constructor(downPayment: number = 1000) {
+    this._balance = downPayment;
+  }
+
+  set setBalance(newBalance: number) {
+    if (newBalance > 0) {
+      this._balance = newBalance;
+    } else {
+      console.log('Not enough money on your balance');
+    }
+  }
+
+  get getBalance() {
+    return this._balance;
+  }
+
+  buy(price: number = 0): number {
+    this.setBalance = this.getBalance - price;
+    return this.getBalance;
+  }
+}
+const capitalOne = new BankAccount_1(DOWN_PAYMENT);
+
+bankOfAmerica.buy(SHOES.price);
+console.log(bankOfAmerica);
+capitalOne.buy(SHOES.price);
+console.log(capitalOne);
+```
+
+## SRP, Composition
+
+_Problem_
+If you have all of the logic inside of one class or function, you will have to modify it multiple times, this might cause side effects, and break srp.
+_Solution_
+Create composition or inheritance, split it into multiple small sections, which are easier to test, maintain and enhance separately.
+
+```ts
+const DOWN_PAYMENT = 1000;
+
+type Balance = number;
+interface TransactionSchema {
+  name: string;
+  amount: number;
+}
+
+const PRODUCTS: Record<string, TransactionSchema> = {
+  nike: {
+    name: 'Nike Shoes',
+    amount: DOWN_PAYMENT + 150
+  },
+  adidas: {
+    name: 'Adidas Shoes',
+    amount: DOWN_PAYMENT - 150
+  }
+};
+
+class Transaction {
+  private _balance: Balance;
+  private _transaction: TransactionSchema;
+
+  constructor(balance: Balance, transaction: TransactionSchema) {
+    this._balance = balance;
+    this._transaction = transaction;
+  }
+
+  set setBalance(newBalance: Balance) {
+    this._balance = newBalance;
+  }
+
+  get getBalance(): Balance {
+    return this._balance;
+  }
+
+  approve(): void {
+    this.setBalance = this.getBalance - this._transaction.amount;
+    console.log(`${this._transaction.name} Approved, current balance ${this.getBalance}`);
+  }
+
+  decline(): void {
+    console.log(`${this._transaction.name} Declined`);
+  }
+
+  verify(): number {
+    const newPotentialBalance = this.getBalance - this._transaction.amount;
+
+    if (newPotentialBalance > 0) {
+      this.approve();
+    } else {
+      this.decline();
+    }
+
+    return this.getBalance;
+  }
+}
+
+class BankAccount {
+  private _balance: number;
+
+  constructor(downPayment: number = 1000) {
+    this._balance = downPayment;
+  }
+
+  set setBalance(newBalance: number) {
+    this._balance = newBalance;
+  }
+
+  get getBalance() {
+    return this._balance;
+  }
+
+  buy(product: TransactionSchema) {
+    const transaction = new Transaction(this.getBalance, product);
+    this.setBalance = transaction.verify();
+  }
+}
+
+const capitalOne = new BankAccount(DOWN_PAYMENT);
+capitalOne.buy(PRODUCTS.nike);
+capitalOne.buy(PRODUCTS.adidas);
+console.log(capitalOne);
 ```
