@@ -591,12 +591,20 @@ capitalOne.buy(SHOES.price);
 console.log(capitalOne);
 ```
 
-## SRP, Composition
+## Single Responsibility Principle, Composition, Inheritance
+
+One module (class, function) is responsible only for this small action.
 
 _Problem_  
-If you have all of the logic inside of one class or function, you will have to modify it multiple times, this might cause side effects, and break srp.  
+If all of the logic is inside of one module, the entire module will be modified multiple times, this might cause side effects, and the entire module needs to be tested again after every change.  
 _Solution_  
 Create composition or inheritance, split it into multiple small sections, which are easier to test, maintain and enhance separately.
+
+_Pros_
+
+- flexibility: only small modules will be modified, but the main module will remain the same
+- easy maintenance: test only modified modules, not the entire main module
+- logic encapsulation and sharing (ex: children in React comps, while this the logic of the main comp can still exist (encapsulated))
 
 ```ts
 const DOWN_PAYMENT = 1000;
@@ -692,4 +700,226 @@ const capitalOne = new BankAccount(DOWN_PAYMENT);
 capitalOne.buy(PRODUCTS.nike);
 capitalOne.buy(PRODUCTS.adidas);
 console.log(capitalOne);
+```
+
+## Open Closed Principle
+
+Module (class, function) needs to be extendable but not modifiable.
+
+_Problem_  
+If all of the logic is inside of one module, the entire module will be modified multiple times, this might cause side effects, and the entire module needs to be tested again after every change.  
+_Solution_  
+Create composition or inheritance.
+
+_Pros_
+
+- flexibility: only small modules will be modified, but the main module will remain the same
+- easy maintenance: test only modified modules, not the entire main module
+- logic encapsulation and sharing (ex: children in React comps, while this the logic of the main comp can still exist (encapsulated))
+
+```ts
+// ❌
+// class Order {
+//   amount: number;
+
+//   constructor(amount: number) {
+//     this.amount = amount;
+//   }
+
+//   calculateTotal(): number {
+//     return this.amount * 1.1;
+//   }
+// }
+
+// const order = new Order(100);
+// console.log(order.calculateTotal());
+
+// ✅
+interface TaxCalculator {
+  calculate(amount: number): number;
+}
+
+class DefaultTaxCalculator implements TaxCalculator {
+  calculate(amount: number): number {
+    return amount * 1.1;
+  }
+}
+
+class ReducedTaxCalculator implements TaxCalculator {
+  calculate(amount: number): number {
+    return amount * 1.05;
+  }
+}
+
+class Order {
+  private taxCalculator: TaxCalculator;
+  private amount: number;
+
+  constructor(amount: number, taxCalculator?: TaxCalculator) {
+    this.taxCalculator = taxCalculator ?? new DefaultTaxCalculator();
+    this.amount = amount;
+  }
+
+  calculateTotal(): number {
+    return this.taxCalculator.calculate(this.amount);
+  }
+}
+
+const order_1 = new Order(100);
+console.log(order_1.calculateTotal());
+
+const order_2 = new Order(100, new ReducedTaxCalculator());
+console.log(order_2.calculateTotal());
+```
+
+## Lyskov Substitution Principle
+
+Submodules need to extend the main module, without changing it.
+
+```ts
+// ❌
+// class Bird {
+//   fly() {
+//     console.log('Bird is flying');
+//   }
+// }
+
+// class Ostrich extends Bird {
+//   fly() {
+//     throw new Error('Ostrich cant fly');
+//   }
+// }
+
+// const letBirdFly = (bird: Bird) => {
+//   bird.fly();
+// };
+
+// const sparrow = new Bird();
+// letBirdFly(sparrow);
+
+// const ostrich = new Ostrich(); // ostrich cant fly
+// letBirdFly(ostrich);
+
+// ✅
+class Bird {
+  walk() {
+    console.log('Bird is walking');
+  }
+}
+
+interface CanFly {
+  fly(): void;
+}
+
+class Sparrow extends Bird implements CanFly {
+  fly() {
+    console.log('Sparrow is flying');
+  }
+}
+
+class Ostrich extends Bird {}
+
+const letBirdFly = (bird: CanFly) => {
+  bird.fly();
+};
+
+const sparrow = new Sparrow();
+letBirdFly(sparrow);
+
+const ostrich = new Ostrich();
+try {
+  letBirdFly(ostrich); // dev error, ostrich doesn't have fly method
+} catch {
+  console.log('Ostrich cant fly');
+}
+```
+
+## Interface Segregation Principle
+
+Do not depend on smth what is not used.
+
+```ts
+// ❌
+interface DataProvider {
+  getData: () => string[];
+  validateData: () => boolean;
+}
+
+class DataService implements DataProvider {
+  getData() {
+    return ['data 1', 'data 2'];
+  }
+  validateData() {
+    // validation logic
+    return true;
+  }
+}
+
+function DataDisplay({ dataProvider }: { dataProvider: DataProvider }) {
+  const data = dataProvider.getData();
+  // return <div>{data.join(', ')}</div>
+}
+
+// ✅
+interface DataFetcher {
+  getData: () => string[];
+}
+
+interface DataValidator {
+  validateData: () => boolean;
+}
+
+class DataService implements DataFetcher, DataValidator {
+  getData() {
+    return ['data 1', 'data 2'];
+  }
+  validateData() {
+    // validation logic
+    return true;
+  }
+}
+
+function DataDisplay({ dataFetcher }: { dataFetcher: DataFetcher }) {
+  const data = dataFetcher.getData();
+  // return <div>{data.join(', ')}</div>
+}
+```
+
+## Dependency Injection Principle
+
+Separate modules to high and low levels, which do not depend on each other but abstraction (interface).
+
+```ts
+interface NotificationService {
+  send(message: string): void;
+}
+
+class EmailNotificationService implements NotificationService {
+  send(message: string): void {
+    console.log(`Sending Email: ${message}`);
+  }
+}
+
+class SmsNotificationService implements NotificationService {
+  send(message: string): void {
+    console.log(`Sending Sms: ${message}`);
+  }
+}
+
+class NotificationManager {
+  // module depends on NotificationService, not on related modules
+  constructor(private notificationService: NotificationService) {}
+
+  notify(message: string): void {
+    this.notificationService.send(message);
+  }
+}
+
+const emailService = new EmailNotificationService();
+const emailNotificationManager = new NotificationManager(emailService);
+emailNotificationManager.notify('Hello via Email');
+
+const smsService = new SmsNotificationService();
+const smsNotificationManager = new NotificationManager(smsService);
+smsNotificationManager.notify('Hello via Sms');
 ```
