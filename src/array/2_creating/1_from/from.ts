@@ -1,32 +1,43 @@
 import { isArrayLike } from '@src/array/1_checking/2_isArrayLike/isArrayLike.ts';
 import { isIterable } from '@src/array/1_checking/3_isIterable/isIterable.ts';
-import { push } from '@src/array/1_push/push.ts';
+import { push } from '@src/array/3_adding_removing/1_push/push.ts';
 
-export const from = <ArrayItem>(value: unknown): ArrayItem[] => {
-  const valueIsArrayLike = isArrayLike(value);
-  const valueIsIterable = isIterable(value);
+export type Value<Item> = Iterable<Item> | ArrayLike<Item>;
+export type FromArgs<Item> = {
+  value: Value<Item>;
+  // eslint-disable-next-line no-unused-vars
+  mapFn?: ({ item, index }: { item: Item; index: number }) => Item;
+};
+export type FromReturn<Item> = Item[] | Error;
 
-  if (!valueIsArrayLike && !valueIsIterable) return [];
+export const from = <Item>({ value, mapFn }: FromArgs<Item>): FromReturn<Item> => {
+  if (!isArrayLike(value) && !isIterable(value)) return [];
 
-  if (valueIsIterable) {
-    const newArrayFromIterable: ArrayItem[] = [];
+  console.log('test');
 
-    for (const arrayItem of value) {
-      push({ array: newArrayFromIterable, newItem: arrayItem });
+  const newArray: Item[] = [];
+
+  if (isIterable(value)) {
+    let index = 0;
+
+    for (const arrayItem of value as Iterable<Item>) {
+      push({
+        array: newArray,
+        newLastItem: mapFn ? mapFn({ item: arrayItem, index }) : arrayItem
+      });
+      index++;
     }
-
-    return newArrayFromIterable;
-  }
-
-  if (valueIsArrayLike) {
-    const newArrayFromArrayLike: ArrayItem[] = [];
-
-    const arrayLikeValue = value as { length: number };
+  } else {
+    const arrayLikeValue = value as ArrayLike<Item>;
 
     for (let i = 0; i < arrayLikeValue.length; i++) {
-      push({ array: newArrayFromArrayLike, newItem: arrayLikeValue[i] });
+      const arrayItem = arrayLikeValue[i];
+      push({
+        array: newArray,
+        newLastItem: mapFn ? mapFn({ item: arrayItem, index: i }) : arrayItem
+      });
     }
-
-    return newArrayFromArrayLike;
   }
+
+  return newArray;
 };

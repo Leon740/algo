@@ -1,3 +1,3 @@
-export const isArray = (arg: unknown): boolean => {
-  return arg instanceof Array;
+export const isArray = (value: unknown): boolean => {
+  return value instanceof Array;
 };

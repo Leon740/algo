@@ -6,12 +6,12 @@ export const isArrayLike = (value: unknown): boolean => {
   if (!valueIsValid) return false;
 
   const length = (value as { length?: unknown }).length;
-  const lengthIsValid = typeof length === 'number' && length >= 0 && Number.isInteger(length);
+  const lengthIsValid = typeof length === 'number' && Number.isInteger(length) && length >= 0;
   if (!lengthIsValid) return false;
 
   const valueIsString = typeof value === 'string';
   const valueIsObject = typeof value === 'object';
-  const valueIsValidObject = valueIsObject && (isArray(value) || 0 in (value as object));
+  const valueIsArrayLikeObject = valueIsObject && (isArray(value) || 0 in (value as object));
 
-  return length >= 0 && (valueIsValidObject || valueIsString);
+  return valueIsArrayLikeObject || valueIsString;
 };

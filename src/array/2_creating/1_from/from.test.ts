@@ -1,124 +1,85 @@
-import { type Test, type TestResult } from '@src/utils/log.ts';
-import { from } from './from.ts';
+import { MyArray } from '@src/array/MyArray.ts';
+import { type Test } from '@src/utils/log.ts';
+import { VALUES } from '@src/utils/values.ts';
 
-const testFrom = (value: unknown): TestResult => {
-  return {
-    expected: Array.from(value),
-    actual: from(value)
-  };
-};
-
-export const allTestsOfFrom: Test[] = [
-  {
-    name: '[] | undefined',
-    expected: [],
-    actual: from(undefined)
-  },
-  {
-    name: '[] | null',
-    expected: [],
-    actual: from(null)
-  },
-  {
-    name: '[] | {}',
-    expected: [],
-    actual: from({})
-  },
-  {
-    name: '[] | {a: 1}',
-    expected: [],
-    actual: from({ a: 1 })
-  },
-  {
-    name: 'string[] | string',
-    ...testFrom('hello')
-  },
+export const testsOfFrom: Test[] = [
+  // Error
   // {
-  //   name: 'number[] | number[]',
-  //   expected: [0, 1, 2],
-  //   actual: from([0, 1, 2])
+  //   name: 'undefined | Error',
+  //   expected: Array.from(VALUES.undefined),
+  //   actual: MyArray.from({value: VALUES.undefined})
   // },
+  // {
+  //   name: 'null | Error',
+  //   expected: Array.from(VALUES.null),
+  //   actual: MyArray.from({value: VALUES.null})
+  // }
   {
-    name: 'number[] | Set()',
-    ...testFrom(new Set())
+    name: 'regularObject | Error',
+    expected: Array.from(VALUES.regularObject),
+    actual: MyArray.from({ value: VALUES.regularObject })
   },
   {
-    name: 'number[] | Set([0, 1, 1])',
-    ...testFrom(new Set([0, 1, 1]))
+    name: 'emptyFunction | Error',
+    expected: Array.from(VALUES.emptyFunction),
+    actual: MyArray.from({ value: VALUES.emptyFunction })
+  },
+  // []
+  {
+    name: 'emptyString | []',
+    expected: Array.from(VALUES.emptyString),
+    actual: MyArray.from({ value: VALUES.emptyString })
   },
   {
-    name: 'number[] | Map()',
-    ...testFrom(new Map())
+    name: 'string | string[]',
+    expected: Array.from(VALUES.string),
+    actual: MyArray.from({ value: VALUES.string })
   },
   {
-    name: 'number[] | Map([["a", 1]])',
-    ...testFrom(new Map([['a', 1]]))
+    name: 'emptyArray | []',
+    expected: Array.from(VALUES.emptyArray),
+    actual: MyArray.from({ value: VALUES.emptyArray })
+  },
+  {
+    name: 'numbersArray | number[]',
+    expected: Array.from(VALUES.numbersArray),
+    actual: MyArray.from({ value: VALUES.numbersArray })
+  },
+  {
+    name: 'arrayLikeObject | number[]',
+    expected: Array.from(VALUES.arrayLikeObject),
+    actual: MyArray.from({ value: VALUES.arrayLikeObject })
+  },
+  {
+    name: 'numbersSet | number[]',
+    expected: Array.from(VALUES.numbersSet),
+    actual: MyArray.from({ value: VALUES.numbersSet })
+  },
+  {
+    name: 'numbersMap | number[]',
+    expected: Array.from(VALUES.numbersMap),
+    actual: MyArray.from({ value: VALUES.numbersMap })
+  },
+  // mapFn
+  {
+    name: 'doubledNumbersArray',
+    expected: Array.from(VALUES.numbersArray, (number) => number * 2),
+    actual: MyArray.from<number>({
+      value: VALUES.numbersArray,
+      mapFn: ({ item: number }) => number * 2
+    })
+  },
+  {
+    name: 'numbers from 0 to 4',
+    expected: Array.from({ length: 5 }, (_, index) => index + 1),
+    actual: MyArray.from<number>({
+      value: { 0: 0, length: 5 },
+      mapFn: ({ _item, index }) => index + 1
+    })
+  },
+  {
+    name: 'audi[]',
+    expected: Array.from(['A6', 'Q8'], (make) => `Audi ${make}`),
+    actual: MyArray.from<string>({ value: ['A6', 'Q8'], mapFn: ({ item: make }) => `Audi ${make}` })
   }
 ];
-
-// const helloString = 'hello';
-// console.log(helloString);
-// const lettersOfHello = Array.from(helloString);
-// console.log(lettersOfHello);
-
-// const string = 'Hello';
-// console.log(string);
-// for (const char of string) {
-//   console.log(char);
-// }
-
-// const stringIterator = string[Symbol.iterator]();
-// console.log(stringIterator);
-
-// while (true) {
-//   let result = stringIterator.next();
-//   console.log(result);
-//   if (result.done) break;
-// }
-
-// const range = {
-//   start: 0,
-//   end: 5,
-//   [Symbol.iterator]: function () {
-//     return {
-//       current: this.start,
-//       last: this.end,
-//       next() {
-//         if (this.current <= this.last) {
-//           return { done: false, value: this.current++ };
-//         } else {
-//           return { done: true };
-//         }
-//       }
-//     };
-//   }
-// };
-
-// for (const number of range) {
-//   console.log(number);
-// }
-
-// const set = new Set([0, 1, 2, 2, 3, 3, 3]);
-// for (const setItem of set) {
-//   console.log(setItem);
-// }
-// console.log(Array.from(set));
-
-// const map = new Map([
-//   ['a', 0],
-//   ['b', 1]
-// ]);
-// map.set('c', 2);
-// for (const mapItem of map) {
-//   console.log(mapItem);
-// }
-// console.log(Array.from(map));
-
-// const audis = Array.from(['A6', 'Q8'], (model) => `Audi ${model}`);
-// console.log(audis);
-
-// const lettersOfHello = Array.from('Hello');
-// console.log(lettersOfHello);
-
-// const numbers = Array.from({ length: 5 }, (_, index) => index);
-// console.log(numbers);

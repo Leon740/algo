@@ -1,4 +1,4 @@
-# 1 Naming
+# 1. Naming
 
 ## Names should imply the intention
 
@@ -16,7 +16,7 @@ const copiedArray = copyArray(ARRAY);
 console.log(copiedArray);
 
 // ✅
-const getDuplicatedArray = (source: number[]): number[] => {
+const getDuplicatedArray = <ArrayItem>(source: ArrayItem[]): ArrayItem[] => {
   const duplicate = [...source];
   return duplicate;
 };
@@ -40,8 +40,12 @@ console.log(numbers0);
 console.log(numbers1);
 
 // ✅
-const evenNumbers = NUMBERS.filter((currentNumber) => currentNumber % 2 === 0);
-const oddNumbers = NUMBERS.filter((currentNumber) => currentNumber % 2 !== 0);
+const isEvenNumber = (number: number): boolean => {
+  return number % 2 === 0;
+};
+
+const evenNumbers = NUMBERS.filter((currentNumber) => isEvenNumber(currentNumber));
+const oddNumbers = NUMBERS.filter((currentNumber) => !isEvenNumber(currentNumber));
 console.log(evenNumbers);
 console.log(oddNumbers);
 ```
@@ -84,7 +88,9 @@ const CAR = {
 };
 
 const paintCar = (car: Car): Car => {
+  // ===
   car.carColor = 'black';
+  // ===
   return car;
 };
 const paintedCar = paintCar(CAR);
@@ -184,8 +190,13 @@ console.log(getWeekendDaysOfWeek(DAYS_OF_WEEK));
 
 ## The less args the better it is
 
-1. if more than 2 args are used, the function does too much.
-2. Instead of args use object.
+_Problem_
+If function is using many args it's hard to test it, all of the variants needs to be tested.
+And in this case the function does too much.
+
+_Solution_
+Use object for args.
+Create function composition.
 
 Using object
 
@@ -214,9 +225,9 @@ const createdIvan = createPerson_0('Petrov', 'Ivan', 23);
 console.log(createdIvan);
 
 // ✅
-const createPerson_1 = (info: Person): Person => {
+const createPerson_1 = (person: Person): Person => {
   return {
-    ...info
+    ...person
   };
 };
 
@@ -270,7 +281,6 @@ const suggestSubscriptionToAdultUsers = (users: User[]): void => {
 suggestSubscriptionToAdultUsers(USERS);
 
 // ✅
-
 const getAdultUsers = (users: User[]): User[] => {
   const today = new Date();
 
@@ -583,21 +593,21 @@ console.log(capitalOne);
 
 ## SRP, Composition
 
-_Problem_
-If you have all of the logic inside of one class or function, you will have to modify it multiple times, this might cause side effects, and break srp.
-_Solution_
+_Problem_  
+If you have all of the logic inside of one class or function, you will have to modify it multiple times, this might cause side effects, and break srp.  
+_Solution_  
 Create composition or inheritance, split it into multiple small sections, which are easier to test, maintain and enhance separately.
 
 ```ts
 const DOWN_PAYMENT = 1000;
 
 type Balance = number;
-interface TransactionSchema {
+interface Product {
   name: string;
   amount: number;
 }
 
-const PRODUCTS: Record<string, TransactionSchema> = {
+const PRODUCTS: Record<string, Product> = {
   nike: {
     name: 'Nike Shoes',
     amount: DOWN_PAYMENT + 150
@@ -608,42 +618,46 @@ const PRODUCTS: Record<string, TransactionSchema> = {
   }
 };
 
+type TransactionSchema = Product & {
+  status: 'approved' | 'declined' | 'pending';
+};
+
 class Transaction {
-  private _balance: Balance;
   private _transaction: TransactionSchema;
 
-  constructor(balance: Balance, transaction: TransactionSchema) {
-    this._balance = balance;
-    this._transaction = transaction;
+  constructor(transaction: Product) {
+    this._transaction = { ...transaction, status: 'pending' };
   }
 
-  set setBalance(newBalance: Balance) {
-    this._balance = newBalance;
+  get getTransaction(): TransactionSchema {
+    return this._transaction;
   }
 
-  get getBalance(): Balance {
-    return this._balance;
+  get getStatus(): string {
+    return this._transaction.status;
+  }
+
+  set setStatus(newStatus: TransactionSchema['status']) {
+    this._transaction.status = newStatus;
   }
 
   approve(): void {
-    this.setBalance = this.getBalance - this._transaction.amount;
-    console.log(`${this._transaction.name} Approved, current balance ${this.getBalance}`);
+    console.log(`${this._transaction.name} Approved`);
   }
 
   decline(): void {
     console.log(`${this._transaction.name} Declined`);
   }
 
-  verify(): number {
-    const newPotentialBalance = this.getBalance - this._transaction.amount;
-
-    if (newPotentialBalance > 0) {
-      this.approve();
+  verify(potentialBalance: number): TransactionSchema {
+    if (potentialBalance > 0) {
+      this.setStatus = 'approved';
     } else {
-      this.decline();
+      this.setStatus = 'declined';
     }
+    console.log(`${this.getTransaction.name} ${this.getStatus}`);
 
-    return this.getBalance;
+    return this.getTransaction;
   }
 }
 
@@ -658,13 +672,19 @@ class BankAccount {
     this._balance = newBalance;
   }
 
-  get getBalance() {
+  get getBalance(): Balance {
     return this._balance;
   }
 
-  buy(product: TransactionSchema) {
-    const transaction = new Transaction(this.getBalance, product);
-    this.setBalance = transaction.verify();
+  buy(product: Product) {
+    const newPotentialBalance = this.getBalance - product.amount;
+
+    const currentTransaction = new Transaction(product);
+    currentTransaction.verify(newPotentialBalance);
+
+    if (currentTransaction.getStatus === 'approved') {
+      this.setBalance = newPotentialBalance;
+    }
   }
 }
 

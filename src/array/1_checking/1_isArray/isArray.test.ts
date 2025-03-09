@@ -1,48 +1,51 @@
+import { MyArray } from '@src/array/MyArray.ts';
 import { type Test, type TestResult } from '@src/utils/log.ts';
-import { isArray } from './isArray.ts';
+import { VALUES } from '@src/utils/values.ts';
 
-const testIsArray = (arg: unknown): TestResult => {
+const testIsArray = (value: unknown): TestResult => {
   return {
-    expected: Array.isArray(arg),
-    actual: isArray(arg)
+    expected: Array.isArray(value),
+    actual: MyArray.isArray(value)
   };
 };
 
-export const allTestsOfIsArray: Test[] = [
+export const testsOfIsArray: Test[] = [
+  // false
   {
-    name: 'false | undefined',
-    ...testIsArray(undefined)
+    name: 'undefined | false',
+    ...testIsArray(VALUES.undefined)
   },
   {
-    name: 'false | null',
-    ...testIsArray(null)
+    name: 'null | false',
+    ...testIsArray(VALUES.null)
   },
   {
-    name: 'false | Leonid',
-    ...testIsArray('Leonid')
+    name: 'string | false',
+    ...testIsArray(VALUES.string)
   },
   {
-    name: 'false | 23',
-    ...testIsArray(23)
+    name: 'regularObject | false',
+    ...testIsArray(VALUES.regularObject)
   },
   {
-    name: 'false | true',
-    ...testIsArray(true)
+    name: 'arrayLikeObject | false',
+    ...testIsArray(VALUES.arrayLikeObject)
   },
   {
-    name: 'false | {}',
-    ...testIsArray({})
+    name: 'numbersSet | false',
+    ...testIsArray(VALUES.numbersSet)
   },
   {
-    name: 'false | { name: "Leonid" }',
-    ...testIsArray({ name: 'Leonid' })
+    name: 'numbersMap | false',
+    ...testIsArray(VALUES.numbersMap)
+  },
+  // true
+  {
+    name: 'emptyArray | true',
+    ...testIsArray(VALUES.emptyArray)
   },
   {
-    name: 'true | []',
-    ...testIsArray([])
-  },
-  {
-    name: 'true | [0, 1]',
-    ...testIsArray([0, 1])
+    name: 'numbersArray | true',
+    ...testIsArray(VALUES.numbersArray)
   }
 ];

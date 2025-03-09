@@ -1,55 +1,58 @@
+import { MyArray } from '@src/array/MyArray.ts';
 import { type Test } from '@src/utils/log.ts';
-import { isArrayLike } from './isArrayLike.ts';
+import { VALUES } from '@src/utils/values.ts';
 
-export const allTestsOfIsArrayLike: Test[] = [
+export const testsOfIsArrayLike: Test[] = [
+  // false
   {
-    name: 'false | undefined',
+    name: 'undefined | false',
     expected: false,
-    actual: isArrayLike(undefined)
+    actual: MyArray.isArrayLike(VALUES.undefined)
   },
   {
-    name: 'false | null',
+    name: 'null | false',
     expected: false,
-    actual: isArrayLike(null)
+    actual: MyArray.isArrayLike(VALUES.null)
   },
   {
-    name: 'false | () => {}',
+    name: 'regularObject | false',
     expected: false,
-    actual: isArrayLike(() => {})
+    actual: MyArray.isArrayLike(VALUES.regularObject)
   },
   {
-    name: 'false | Set([0, 1, 2, 2])',
+    name: 'emptyFunction | false',
     expected: false,
-    actual: isArrayLike(new Set([0, 1, 2, 2]))
+    actual: MyArray.isArrayLike(VALUES.emptyFunction)
   },
   {
-    name: 'false | Map([["a", 0]])',
+    name: 'numbersSet | false',
     expected: false,
-    actual: isArrayLike(new Map([['a', 0]]))
+    actual: MyArray.isArrayLike(VALUES.numbersSet)
   },
   {
-    name: 'false | { name: "Leonid" }',
+    name: 'numbersMap | false',
     expected: false,
-    actual: isArrayLike({ name: 'Leonid' })
+    actual: MyArray.isArrayLike(VALUES.numbersMap)
   },
+  // true
   {
-    name: 'true | { [0]: "a", length: 1 }',
+    name: 'emptyString | true',
     expected: true,
-    actual: isArrayLike({ [0]: 'a', length: 1 })
+    actual: MyArray.isArrayLike(VALUES.emptyString)
   },
   {
-    name: 'true | Leonid',
+    name: 'string | true',
     expected: true,
-    actual: isArrayLike('Leonid')
+    actual: MyArray.isArrayLike(VALUES.string)
   },
   {
-    name: 'true | []',
+    name: 'numbersArray | true',
     expected: true,
-    actual: isArrayLike([])
+    actual: MyArray.isArrayLike(VALUES.numbersArray)
   },
   {
-    name: 'true | [0, 1]',
+    name: 'arrayLikeObject | true',
     expected: true,
-    actual: isArrayLike([0, 1])
+    actual: MyArray.isArrayLike(VALUES.arrayLikeObject)
   }
 ];

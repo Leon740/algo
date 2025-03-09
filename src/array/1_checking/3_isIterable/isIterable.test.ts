@@ -1,55 +1,53 @@
+import { MyArray } from '@src/array/MyArray.ts';
 import { type Test } from '@src/utils/log.ts';
-import { isIterable } from './isIterable.ts';
+import { VALUES } from '@src/utils/values.ts';
 
-export const allTestsOfIsIterable: Test[] = [
+export const testsOfIsIterable: Test[] = [
+  // false
   {
-    name: 'false | undefined',
+    name: 'undefined | false',
     expected: false,
-    actual: isIterable(undefined)
+    actual: MyArray.isIterable(VALUES.undefined)
   },
   {
-    name: 'false | null',
+    name: 'null | false',
     expected: false,
-    actual: isIterable(null)
+    actual: MyArray.isIterable(VALUES.null)
   },
   {
-    name: 'false | {}',
+    name: 'emptyString | false',
     expected: false,
-    actual: isIterable({})
+    actual: MyArray.isIterable(VALUES.emptyString)
   },
   {
-    name: 'true | Leonid',
-    expected: true,
-    actual: isIterable('Leonid')
+    name: 'regularObject | false',
+    expected: false,
+    actual: MyArray.isIterable(VALUES.regularObject)
   },
   {
-    name: 'true | []',
+    name: 'arrayLikeObject | false',
+    expected: false,
+    actual: MyArray.isIterable(VALUES.arrayLikeObject)
+  },
+  // true
+  {
+    name: 'string | true',
     expected: true,
-    actual: isIterable([])
+    actual: MyArray.isIterable(VALUES.string)
   },
   {
-    name: 'true | [1]',
+    name: 'numbersArray | true',
     expected: true,
-    actual: isIterable([1])
+    actual: MyArray.isIterable(VALUES.numbersArray)
   },
   {
-    name: 'true | Set()',
+    name: 'numbersSet | true',
     expected: true,
-    actual: isIterable(new Set())
+    actual: MyArray.isIterable(VALUES.numbersSet)
   },
   {
-    name: 'true | Set([0, 1])',
+    name: 'numbersMap | true',
     expected: true,
-    actual: isIterable(new Set([0, 1]))
-  },
-  {
-    name: 'true | Map()',
-    expected: true,
-    actual: isIterable(new Map())
-  },
-  {
-    name: 'true | Map([[a, 0]])',
-    expected: true,
-    actual: isIterable(new Map([['a', 0]]))
+    actual: MyArray.isIterable(VALUES.numbersMap)
   }
 ];

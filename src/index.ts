@@ -1,7 +1,7 @@
-import { allTestsOfFrom } from './array/2_creating/1_from/from.test.ts';
+import { testsOfPush } from './array/3_adding_removing/1_push/push.test.ts';
 import { runTests } from './utils/log.ts';
 
 runTests({
-  name: 'allTestsOfFrom',
-  tests: allTestsOfFrom
+  name: '',
+  tests: testsOfPush
 });
