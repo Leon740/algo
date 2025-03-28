@@ -12,11 +12,11 @@ export const testsOfIsEmpty: Test[] = [
   {
     name: 'if array is empty, returns true',
     expected: emptyArrayExpected.length === 0,
-    actual: emptyArrayActual.isEmpty()
+    actual: MyArray.isEmpty(emptyArrayActual.store)
   },
   {
     name: 'if array is not empty, returns false',
     expected: numbersArrayExpected.length === 0,
-    actual: numbersArrayActual.isEmpty()
+    actual: MyArray.isEmpty(numbersArrayActual.store)
   }
 ];

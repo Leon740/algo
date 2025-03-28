@@ -126,7 +126,7 @@ console.log(paintedCar);
 - make it easy to find with IDE search
 - explicit is better than implicit
 
-- Tday -> Day
+- Tday -> Day  
   no need to mention it's type, IDE knows it
 - ALL_DAYS -> DAYS_OF_WEEK
 - days -> daysOfWeek
@@ -171,17 +171,17 @@ const DAYS_OF_WEEK: Day[] = [
   'Sunday'
 ];
 
-const isWeekend = (day: Day): boolean => {
+const isWeekendDay = (day: Day): boolean => {
   return day === 'Saturday' || day === 'Sunday';
 };
 
 const getWorkingDaysOfWeek = (daysOfWeek: Day[]): Day[] => {
-  return daysOfWeek.filter((currentDay) => !isWeekend(currentDay));
+  return daysOfWeek.filter((currentDay) => !isWeekendDay(currentDay));
 };
 console.log(getWorkingDaysOfWeek(DAYS_OF_WEEK));
 
 const getWeekendDaysOfWeek = (daysOfWeek: Day[]): Day[] => {
-  return daysOfWeek.filter((currentDay) => isWeekend(currentDay));
+  return daysOfWeek.filter((currentDay) => isWeekendDay(currentDay));
 };
 console.log(getWeekendDaysOfWeek(DAYS_OF_WEEK));
 ```

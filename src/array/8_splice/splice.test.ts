@@ -1,8 +1,9 @@
-import { ARRAYS } from '@src/constants.ts';
 import { type Test } from '@src/utils/log.ts';
-import { type SpliceArgs, splice } from './splice.ts';
+import { VALUES } from '@src/utils/values.ts';
+import { MyArray } from '../MyArray.ts';
+import { splice } from './splice.ts';
 
-const numbers = [...ARRAYS.numbers];
+const numbers = [...VALUES.numbersArray];
 const numbersLength = numbers.length;
 const numbersMiddleIndex = Math.round(numbersLength / 2);
 
@@ -10,7 +11,11 @@ const spliceTestItem = ({
   startIndex,
   deleteCount,
   newItems = []
-}: Omit<SpliceArgs<number>, 'array'>): {
+}: {
+  startIndex: number;
+  deleteCount?: number;
+  newItems?: number[];
+}): {
   removedItems: {
     expected: number[];
     actual: number[];
@@ -20,12 +25,11 @@ const spliceTestItem = ({
     actual: number[];
   };
 } => {
-  const arrayExpected = [...numbers];
-  const arrayActual = [...numbers];
+  const arrayExpected = new Array(...numbers);
+  const arrayActual = new MyArray<number>(numbers);
 
   const removedItemsExpected = arrayExpected.splice(startIndex, deleteCount, ...newItems);
-  const removedItemsActual = splice<number>({
-    array: arrayActual,
+  const removedItemsActual = arrayActual.splice({
     startIndex,
     deleteCount,
     newItems
@@ -38,13 +42,10 @@ const spliceTestItem = ({
     },
     modifiedArrays: {
       expected: arrayExpected,
-      actual: arrayActual
+      actual: arrayActual.store
     }
   };
 };
-
-const empty_array_0 = [...ARRAYS.empty];
-const empty_array_1 = [...ARRAYS.empty];
 
 const testPositiveStartIndexIn = spliceTestItem({
   startIndex: 0,
@@ -86,11 +87,11 @@ const testNewItemsLongerDeleteCount = spliceTestItem({
   newItems: [11, 12, 13]
 });
 
-export const spliceTests: Test[] = [
+export const testsOfSplice: Test[] = [
   {
     name: '[], []',
-    expected: empty_array_0.splice(0),
-    actual: splice({ array: empty_array_1, startIndex: 0 })
+    expected: VALUES.emptyArray.splice(0),
+    actual: splice({ array: VALUES.emptyArray, startIndex: 0 })
   },
   // + startIndex IN
   {

@@ -8,7 +8,7 @@ Not your manager, not the team lead, but you.
 
 Noone will double check you. Work the way as if there's no quality control engineers.
 
-**Which code is bad? - the one which you're not confident it**
+**Which code is bad? - the one which you're not confident in**
 
 **Boyscout rule**
 
@@ -17,7 +17,7 @@ While working with a module, make it better than it was.
 **Test driven development helps to**
 
 - build a strong architecture - composition - structure
-  (to test this large func you need to split it into multiple funcs)
+  (to test this large func you need to compose it into multiple funcs)
 
 **Self development**
 
@@ -67,20 +67,19 @@ No, you are not able to complete it by the end of this week. No overtime. You ar
 
 **Promise language**
 
-_Falsy promises_
+_Falsy promises_  
 I should start hitting the jym.
 Hopefully I will finish this task today.
 
-_True promises_
+_True promises_  
 I am hitting the gym 3 times a week. I got my gear, training program, trainer and a friend.
 I will finish this task today. If not sure, say tomorrow.
 
-Difference
-Deterministic
+Difference - Deterministic
 
 **Common issues**
 
-If this doesn't depend fully on you, but on another department, engineer.
+If this doesn't fully depend on you, but on another department, engineer.
 Currently I am working on this. I faced this issue. I reached out to this engineer from this department. He said he needs 1 day to push his fix. After that, I will need 8 more hours to push my updates.
 
 **Daily calls**
@@ -114,9 +113,10 @@ Cool off, and then clean code.
 Think working at night shows how you love what you're doing? - No.
 Instead, use 8 hours a day.
 However, if this is the only one option to go, do
-10-10:45 Work
-11-11:45 Work
-12-12:45 Work
+
+- 10-10:45 Work
+- 11-11:45 Work
+- 12-12:45 Work
 
 Working at night, requires extra effort, and unbalances your body hours, which leads to productivity loss.
 
@@ -135,10 +135,10 @@ Eat, Sleep, Sex, Sport, Society.
 
 A state of high concentration.
 
-_Problem_
+_Problem_  
 The entire image (goal) is blurred, because of the speed, you make not the greatest solutions.
 
-_Solution_
+_Solution_  
 Stop. Reflect. Why? Toyota 5 principles.
 
 **Music**
@@ -165,7 +165,7 @@ Do not let the pressure overwhelm you.
 
 **Overtime**
 
-Only you have resources for this.
+Only if you have resources for this.
 If it's not gonna take longer than a week.
 Chief has a plan for the worst case.
 
@@ -230,9 +230,9 @@ Problem
 
 - distraction (phone, background noise, etc) - focus mode, basement.
 
-- recharge - sport, mediation, book, nap
+- recharge - sport, mediation, book, nap.
 
-- inspiration - books, movies, people
+- inspiration - books, movies, people.
 
 **Pomodoro**
 
@@ -294,7 +294,7 @@ Compose large task into smaller. Estimate them, count result.
 
 **Poker planning**
 
-Ask colleagues about their thoughts on this point
+Ask colleagues about their thoughts on this point.
 One of people is selecting the estimate to discuss.
 Each member of a group has 5 papers with numbers from 1 to 5.
 After 1, 2, 3 everyone shows their point at the same time.
@@ -305,7 +305,7 @@ A doctor is making a surgery, what if he complained how tired he is, how difficu
 
 **Promises**
 
-Give promises when you sure, always give estimates.
+Give promises when you are confident, always give estimates.
 
 **Interaction**
 
@@ -360,7 +360,7 @@ Your work is for people. So do not escape them, interact with them.
 # 11. Education
 
 Doctors study decades and tons of information before even attending to the exams.
-People in It complain that there is no work after they did some youtube videos and 2 months courses. Ha-ha.
+People in IT complain that there is no work after they did some youtube videos and 2 months courses. Ha-ha.
 
 Code is everywhere, it surrounds us.
 

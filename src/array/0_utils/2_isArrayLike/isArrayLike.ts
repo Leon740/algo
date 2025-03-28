@@ -1,4 +1,4 @@
-import { isArray } from '@src/array/1_checking/1_isArray/isArray.ts';
+import { isArray } from '@src/array/0_utils/1_isArray/isArray.ts';
 
 export const isArrayLike = (value: unknown): boolean => {
   const valueIsValid =

@@ -1,4 +1,4 @@
-import { push } from '@src/array/1_push/push.ts';
+import { push } from '@src/array/2_push/push.ts';
 
 type Key = string;
 
