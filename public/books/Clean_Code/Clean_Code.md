@@ -2,50 +2,46 @@
 
 ## Names should imply the intention
 
-- copyArray -> getDuplicatedArray
+- copyArray -> duplicateArray
 - arr -> source
 
 ```ts
-const ARRAY: number[] = [0, 1, 2];
-
 // ❌
 const copyArray = (arr: number[]): number[] => {
   return [...arr];
 };
-const copiedArray = copyArray(ARRAY);
+const copiedArray = copyArray(ARRAYS.numbers);
 console.log(copiedArray);
 
 // ✅
-const getDuplicatedArray = <ArrayItem>(source: ArrayItem[]): ArrayItem[] => {
-  const duplicate = [...source];
-  return duplicate;
+const duplicateArray = <ArrayItem>(source: ArrayItem[]) => {
+  return [...source];
 };
-const duplicatedArray = getDuplicatedArray(ARRAY);
-console.log(duplicatedArray);
+const duplicatedNumbers = duplicateArray(ARRAYS.numbers);
+console.log(duplicatedNumbers);
 ```
 
 ## No desinformation
 
+- isEven func
 - number -> currentNumber
 - numbers0 -> evenNumbers
 - numbers1 -> oddNumbers
 
 ```ts
-const NUMBERS: number[] = [0, 1, 2, 3, 4];
-
 // ❌
-const numbers0 = NUMBERS.filter((number) => number % 2 === 0);
-const numbers1 = NUMBERS.filter((number) => number % 2 !== 0);
+const numbers0 = ARRAYS.numbers.filter((number) => number % 2 === 0);
+const numbers1 = ARRAYS.numbers.filter((number) => number % 2 !== 0);
 console.log(numbers0);
 console.log(numbers1);
 
 // ✅
-const isEvenNumber = (number: number): boolean => {
+const isEven = (number: number) => {
   return number % 2 === 0;
 };
 
-const evenNumbers = NUMBERS.filter((currentNumber) => isEvenNumber(currentNumber));
-const oddNumbers = NUMBERS.filter((currentNumber) => !isEvenNumber(currentNumber));
+const evenNumbers = ARRAYS.numbers.filter(isEven);
+const oddNumbers = ARRAYS.numbers.filter((currentNumber) => !isEven(currentNumber));
 console.log(evenNumbers);
 console.log(oddNumbers);
 ```
@@ -81,23 +77,6 @@ interface Car {
   carColor: string;
 }
 
-const CAR = {
-  carMake: 'Audi',
-  carModel: 'A6',
-  carColor: 'n/a'
-};
-
-const paintCar = (car: Car): Car => {
-  // ===
-  car.carColor = 'black';
-  // ===
-  return car;
-};
-const paintedCar = paintCar(CAR);
-console.log(paintedCar);
-```
-
-```ts
 // ✅
 interface Car {
   make: string;
@@ -105,17 +84,18 @@ interface Car {
   color: string;
 }
 
-const CAR = {
-  make: 'Audi',
-  model: 'A6',
-  color: 'n/a'
+const CAR: Car = {
+  carMake: 'Audi',
+  carModel: 'A6',
+  carColor: 'n/a'
 };
 
-const paintCar = (car: Car): Car => {
-  car.color = 'black';
+const paint = (car: Car): Car => {
+  // repeating
+  car.carColor = 'black';
   return car;
 };
-const paintedCar = paintCar(CAR);
+const paintedCar = paint(CAR);
 console.log(paintedCar);
 ```
 
@@ -127,9 +107,10 @@ console.log(paintedCar);
 - explicit is better than implicit
 
 - Tday -> Day  
-  no need to mention it's type, IDE knows it
+  no need to mention it's type, IDE knows it. Prefixes are skipped by brain.
 - ALL_DAYS -> DAYS_OF_WEEK
-- days -> daysOfWeek
+- no get keyword
+- no days arg
 - day -> currentDay
 
 ```ts
@@ -146,15 +127,15 @@ const ALL_DAYS: TDay[] = [
   'Sunday'
 ];
 
-const getWorkingDaysInWeek = (days: TDay[]): TDay[] => {
+const getWorkingDaysOfWeek = (days: TDay[]) => {
   return days.filter((day) => day !== 'Saturday' && day !== 'Sunday');
 };
-console.log(getWorkingDaysInWeek(ALL_DAYS));
+console.log(getWorkingDaysOfWeek(ALL_DAYS));
 
-const getWeekendDaysInWeek = (days: TDay[]): TDay[] => {
+const getWeekendDaysOfWeek = (days: TDay[]) => {
   return days.filter((day) => day === 'Saturday' || day === 'Sunday');
 };
-console.log(getWeekendDaysInWeek(ALL_DAYS));
+console.log(getWeekendDaysOfWeek(ALL_DAYS));
 ```
 
 ```ts
@@ -171,32 +152,28 @@ const DAYS_OF_WEEK: Day[] = [
   'Sunday'
 ];
 
-const isWeekendDay = (day: Day): boolean => {
+const isWeekend = (day: Day) => {
   return day === 'Saturday' || day === 'Sunday';
 };
 
-const getWorkingDaysOfWeek = (daysOfWeek: Day[]): Day[] => {
-  return daysOfWeek.filter((currentDay) => !isWeekendDay(currentDay));
-};
-console.log(getWorkingDaysOfWeek(DAYS_OF_WEEK));
+const workingDaysOfWeek = DAYS_OF_WEEK.filter((currentDay) => !isWeekend(currentDay));
+const weekendDaysOfWeek = DAYS_OF_WEEK.filter((currentDay) => isWeekend(currentDay));
 
-const getWeekendDaysOfWeek = (daysOfWeek: Day[]): Day[] => {
-  return daysOfWeek.filter((currentDay) => isWeekendDay(currentDay));
-};
-console.log(getWeekendDaysOfWeek(DAYS_OF_WEEK));
+console.log(workingDaysOfWeek);
+console.log(weekendDaysOfWeek);
 ```
 
 # 2. Functions
 
 ## The less args the better it is
 
-_Problem_
-If function is using many args it's hard to test it, all of the variants needs to be tested.
-And in this case the function does too much.
+_Problem_  
+If function is using more than 2 args it means it does too much.
+The more args the harder it is to test the function.
 
-_Solution_
-Use object for args.
-Create function composition.
+_Solution_  
+Compose function into smaller multiple functions.
+In case when more than 1 arg is needed use object for args.
 
 Using object
 
@@ -205,13 +182,13 @@ Using object
 3. linters can highlight the properties not used
 
 ```ts
-// ❌
 interface Person {
   firstName: string;
   lastName: string;
   age: number;
 }
 
+// ❌
 const createPerson_0 = (firstName: string, lastName: string, age: number): Person => {
   return {
     firstName,
@@ -220,22 +197,20 @@ const createPerson_0 = (firstName: string, lastName: string, age: number): Perso
   };
 };
 
-// firstName and lastName broken order
-const createdIvan = createPerson_0('Petrov', 'Ivan', 23);
+// wrong order of firstName and lastName
+const createdIvan = createPerson_0('Petrov', 'Ivan', 21);
 console.log(createdIvan);
 
 // ✅
 const createPerson_1 = (person: Person): Person => {
   return {
-    ...person
+    firstName: person.firstName,
+    lastName: person.lastName,
+    age: person.age
   };
 };
 
-const createdLeonid = createPerson_1({
-  firstName: 'Leonid',
-  lastName: 'Dobrinov',
-  age: 23
-});
+const createdLeonid = createPerson_1({ firstName: 'Leonid', lastName: 'Dobrinov', age: 23 });
 console.log(createdLeonid);
 ```
 
@@ -262,7 +237,7 @@ const USERS: User[] = [
 ];
 
 // ❌
-const suggestSubscriptionToAdultUsers = (users: User[]): void => {
+const suggestSubscriptionToAdultUsers = (users: User[]) => {
   const today = new Date();
 
   const adultUsers = users.filter(({ dob }) => {
@@ -281,28 +256,26 @@ const suggestSubscriptionToAdultUsers = (users: User[]): void => {
 suggestSubscriptionToAdultUsers(USERS);
 
 // ✅
-const getAdultUsers = (users: User[]): User[] => {
-  const today = new Date();
-
-  const adultUsers = users.filter(({ dob }) => {
-    const birthDate = new Date(dob);
-    const age = today.getFullYear() - birthDate.getFullYear();
-    return age > 18;
-  });
-
-  return adultUsers;
+const getUserAge = ({ dob }: Pick<User, 'dob'>) => {
+  const currentYear = new Date().getFullYear();
+  const userBirthsYear = new Date(dob).getFullYear();
+  const userAge = currentYear - userBirthsYear;
+  return userAge;
 };
 
-const getNotSubscribedUsers = (users: User[]): User[] => {
-  const notSubscribedUsers = users.filter(({ subscribed }) => !subscribed);
-  return notSubscribedUsers;
+const getAdultUsers = (users: User[]) => {
+  return users.filter(({ dob }) => getUserAge({ dob }) >= 18);
 };
 
-const askUserToSubscribe = (user: User): void => {
-  console.log(`Hey ${user.firstName}, Subscribe to enjoy content.`);
+const getNotSubscribedUsers = (users: User[]) => {
+  return users.filter(({ subscribed }) => !subscribed);
 };
 
-const askAllNotSubscribedAdultUsersToSubscribe = (users: User[]): void => {
+const askUserToSubscribe = ({ firstName }: Pick<User, 'firstName'>) => {
+  console.log(`Hey ${firstName}, Subscribe to enjoy content.`);
+};
+
+const askAllNotSubscribedAdultUsersToSubscribe = (users: User[]) => {
   const notSubscribedUsers = getNotSubscribedUsers(users);
   const notSubscribedAdultUsers = getAdultUsers(notSubscribedUsers);
 
@@ -345,25 +318,25 @@ const CARS: Car[] = [
 ];
 
 // ❌
-const getAudis = (cars: Car[]): Car[] => {
+const getAudis = (cars: Car[]) => {
   return cars.filter((currentCar) => currentCar.make === 'Audi');
 };
 
-const getToyotas = (cars: Car[]): Car[] => {
+const getToyotas = (cars: Car[]) => {
   return cars.filter((currentCar) => currentCar.make === 'Toyota');
 };
 const toyotas = getToyotas(CARS);
 console.log(toyotas);
 
 // ✅
-const getCars = <K extends keyof Car>({
+const getCars = <Key extends keyof Car>({
   cars,
-  key = 'make' as K,
+  key = 'make' as Key,
   value
 }: {
   cars: Car[];
-  key: K;
-  value: Car[K];
+  key: Key;
+  value: Car[Key];
 }): Car[] => {
   return cars.filter((currentCar) => currentCar[key] === value);
 };
@@ -501,34 +474,37 @@ const totalTeamOutput_1 = TEAM_OUTPUT.reduce((acc, member) => acc + member.lines
 console.log(totalTeamOutput_1);
 ```
 
-## Incapsulate conditions
+## Encapsulate conditions
 
 ```ts
-const state = 'loading';
-
-const displayLoader = () => {
-  console.log('loading...');
-};
+type State = 'Loading' | 'Success' | 'Error';
+const STATE: State = 'Loading';
 
 // ❌
-if (state === 'loading') {
-  displayLoader();
+const displaySpinner = () => {
+  console.log('Loading...');
+};
+
+if (STATE === 'Loading') {
+  displaySpinner();
 }
 
 // ✅
-const isLoadingState = state === 'loading';
-if (isLoadingState) {
-  displayLoader();
-}
+const shouldDisplaySpinner = (state: State) => {
+  if (state === 'Loading') {
+    console.log('Loading...');
+  }
+};
+shouldDisplaySpinner(STATE);
 ```
 
 # 3. Objects
 
 ## Use getters and setters
 
-_Problem_
+_Problem_  
 Class state can be modified outside, which leads to side effects and unpredictable behavior.
-_Solution_
+_Solution_  
 Use private properties, encapsulate logic inside, have a set of actions to modify it, defined inside.
 
 ```ts
@@ -923,3 +899,72 @@ const smsService = new SmsNotificationService();
 const smsNotificationManager = new NotificationManager(smsService);
 smsNotificationManager.notify('Hello via Sms');
 ```
+
+# 4. Comments
+
+if code needs comments, it’s a red flag that something is wrong. In most cases, it means the code isn’t clear enough by itself.
+
+Comments are not a tool for improvement — they’re more of a precautionary measure.
+
+Clean code reads like a good book: it can be understood without side explanations.
+
+Think of code as a story you want to tell. Use readable, meaningful names for variables, functions, and components.
+
+## ❌ Cases where comments should be avoided:
+
+- Explaining the obvious.
+- Noise — commenting every single action. These comments tend to be ignored and become outdated quickly.
+- Old commented-out code. If it’s no longer used, it should be removed.
+- Explaining messy code. Don’t explain it — refactor it.
+
+## ✅ Cases where comments are essential:
+
+- Temporary workarounds and hacks. Example: a bug in a third-party library.
+- Complex business logic or non-obvious behavior. Sometimes implementation is driven by obscure requirements.
+- Critical sections. Especially those involving security or financial logic.
+- TODO comments to indicate technical debt.
+
+# 5. Formatting
+
+Formatting isn’t just about aesthetics — it’s crucial for **readability** and **maintainability**. Well-formatted code helps developers understand structure and logic faster.
+
+## General Principles
+
+- **Code should be read top-to-bottom, left-to-right**, just like regular text. The order matters.
+- **Spaces between operators** help clarify logic and make expressions more readable.
+- **Vertical spacing (blank lines)** groups related sections and separates unrelated ones.
+- **Horizontal indentation (tabs or spaces)** shows nesting and visibility scopes.
+
+## Line Length
+
+- Limit line length to **80**, **100**, or **120 characters** (based on your team’s conventions).
+- Short lines improve:
+  - Split-screen readability,
+  - Compatibility with small screens,
+  - Clarity in diffs (e.g., in pull requests).
+
+## Structure and Order
+
+- **Logically related functions should be placed close together**.
+  - For example: `validateUser()` and `saveUser()` should be near each other.
+- **Modules that serve a shared purpose should live close** in the project structure.
+- In classes:
+  - List `public` methods first,
+  - Then `protected`,
+  - Followed by `private`.
+- Alternatively, order by **importance** or **frequency of use**.
+
+---
+
+## Additional Recommendations
+
+- **One level of abstraction per block.**
+  - Don’t mix high-level logic with low-level details in the same method.
+- **Imports:**
+  - Start with external libraries,
+  - Then internal modules,
+  - Finally styles and utilities.
+- Use **automated formatting tools**, like:
+  - [Prettier](https://prettier.io/)
+  - [ESLint](https://eslint.org/)
+  - [EditorConfig](https://editorconfig.org/)
