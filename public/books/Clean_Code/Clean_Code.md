@@ -1,6 +1,8 @@
-# 1. Naming
+# Clean Code
 
-## Names should imply the intention
+## 1. Naming
+
+### Names should imply the intention
 
 - copyArray -> duplicateArray
 - arr -> source
@@ -21,7 +23,7 @@ const duplicatedNumbers = duplicateArray(ARRAYS.numbers);
 console.log(duplicatedNumbers);
 ```
 
-## No desinformation
+### No desinformation
 
 - isEven func
 - number -> currentNumber
@@ -46,7 +48,7 @@ console.log(evenNumbers);
 console.log(oddNumbers);
 ```
 
-## No generics
+### No generics
 
 item, string, object, data, info
 
@@ -67,7 +69,7 @@ LOCATIONS.forEach((currentLocation, index) => {
 });
 ```
 
-## No explicit context
+### No explicit context
 
 ```ts
 // ❌
@@ -99,7 +101,7 @@ const paintedCar = paint(CAR);
 console.log(paintedCar);
 ```
 
-## Use
+### Use
 
 - readable names
 - define it's scope
@@ -163,15 +165,17 @@ console.log(workingDaysOfWeek);
 console.log(weekendDaysOfWeek);
 ```
 
-# 2. Functions
+## 2. Functions
 
-## The less args the better it is
+### The less args the better it is
 
-_Problem_  
+#### Problem
+
 If function is using more than 2 args it means it does too much.
 The more args the harder it is to test the function.
 
-_Solution_  
+#### Solution
+
 Compose function into smaller multiple functions.
 In case when more than 1 arg is needed use object for args.
 
@@ -214,7 +218,7 @@ const createdLeonid = createPerson_1({ firstName: 'Leonid', lastName: 'Dobrinov'
 console.log(createdLeonid);
 ```
 
-## Function should solve 1 problem
+### Function should solve 1 problem
 
 ```ts
 interface User {
@@ -285,7 +289,7 @@ const askAllNotSubscribedAdultUsersToSubscribe = (users: User[]) => {
 console.log(askAllNotSubscribedAdultUsersToSubscribe(USERS));
 ```
 
-## Single source of truth
+### Single source of truth
 
 ```ts
 interface Car {
@@ -344,7 +348,7 @@ const audis = getCars({ cars: CARS, key: 'make', value: 'Audi' });
 console.log(audis);
 ```
 
-## Do not use flags in parameters
+### Do not use flags in parameters
 
 ```ts
 // ❌
@@ -368,7 +372,7 @@ function createTempFile(name) {
 }
 ```
 
-## Function should be pure
+### Functions should be pure
 
 1. no outside access -> no side effects
 2. same output with same input
@@ -394,7 +398,7 @@ const getUserName_1 = (name: string): { firstName: string; lastName: string } =>
 console.log(getUserName_1(NAME));
 ```
 
-## Immutable
+### Immutable
 
 ```ts
 interface Product {
@@ -439,7 +443,7 @@ const addToCart_1 = ({
 console.log(addToCart_1({ product: BMW, currentCart: cart }));
 ```
 
-## Use functions (declarative) over loops (imperative)
+### Use functions (declarative) over loops (imperative)
 
 ```ts
 interface TeamMember {
@@ -474,7 +478,7 @@ const totalTeamOutput_1 = TEAM_OUTPUT.reduce((acc, member) => acc + member.lines
 console.log(totalTeamOutput_1);
 ```
 
-## Encapsulate conditions
+### Encapsulate conditions
 
 ```ts
 type State = 'Loading' | 'Success' | 'Error';
@@ -498,9 +502,9 @@ const shouldDisplaySpinner = (state: State) => {
 shouldDisplaySpinner(STATE);
 ```
 
-# 3. Objects
+## 3. Objects
 
-## Use getters and setters
+### Use getters and setters
 
 _Problem_  
 Class state can be modified outside, which leads to side effects and unpredictable behavior.
@@ -567,16 +571,19 @@ capitalOne.buy(SHOES.price);
 console.log(capitalOne);
 ```
 
-## Single Responsibility Principle, Composition, Inheritance
+### Single Responsibility Principle, Composition, Inheritance
 
 One module (class, function) is responsible only for this small action.
 
-_Problem_  
-If all of the logic is inside of one module, the entire module will be modified multiple times, this might cause side effects, and the entire module needs to be tested again after every change.  
-_Solution_  
+#### Problem
+
+If all of the logic is inside of one module, the entire module will be modified multiple times, this might cause side effects, and the entire module needs to be tested again after every change.
+
+#### Solution
+
 Create composition or inheritance, split it into multiple small sections, which are easier to test, maintain and enhance separately.
 
-_Pros_
+#### Pros
 
 - flexibility: only small modules will be modified, but the main module will remain the same
 - easy maintenance: test only modified modules, not the entire main module
@@ -678,16 +685,19 @@ capitalOne.buy(PRODUCTS.adidas);
 console.log(capitalOne);
 ```
 
-## Open Closed Principle
+### Open Closed Principle
 
 Module (class, function) needs to be extendable but not modifiable.
 
-_Problem_  
-If all of the logic is inside of one module, the entire module will be modified multiple times, this might cause side effects, and the entire module needs to be tested again after every change.  
-_Solution_  
+#### Problem
+
+If all of the logic is inside of one module, the entire module will be modified multiple times, this might cause side effects, and the entire module needs to be tested again after every change.
+
+#### Solution
+
 Create composition or inheritance.
 
-_Pros_
+#### Pros
 
 - flexibility: only small modules will be modified, but the main module will remain the same
 - easy maintenance: test only modified modules, not the entire main module
@@ -748,7 +758,7 @@ const order_2 = new Order(100, new ReducedTaxCalculator());
 console.log(order_2.calculateTotal());
 ```
 
-## Lyskov Substitution Principle
+### Lyskov Substitution Principle
 
 Submodules need to extend the main module, without changing it.
 
@@ -810,7 +820,7 @@ try {
 }
 ```
 
-## Interface Segregation Principle
+### Interface Segregation Principle
 
 Do not depend on smth what is not used.
 
@@ -861,7 +871,7 @@ function DataDisplay({ dataFetcher }: { dataFetcher: DataFetcher }) {
 }
 ```
 
-## Dependency Injection Principle
+### Dependency Injection Principle
 
 Separate modules to high and low levels, which do not depend on each other but abstraction (interface).
 
@@ -900,7 +910,7 @@ const smsNotificationManager = new NotificationManager(smsService);
 smsNotificationManager.notify('Hello via Sms');
 ```
 
-# 4. Comments
+## 4. Comments
 
 if code needs comments, it’s a red flag that something is wrong. In most cases, it means the code isn’t clear enough by itself.
 
@@ -910,32 +920,32 @@ Clean code reads like a good book: it can be understood without side explanation
 
 Think of code as a story you want to tell. Use readable, meaningful names for variables, functions, and components.
 
-## ❌ Cases where comments should be avoided:
+### ❌ Cases where comments should be avoided
 
 - Explaining the obvious.
 - Noise — commenting every single action. These comments tend to be ignored and become outdated quickly.
 - Old commented-out code. If it’s no longer used, it should be removed.
 - Explaining messy code. Don’t explain it — refactor it.
 
-## ✅ Cases where comments are essential:
+### ✅ Cases where comments are essential
 
 - Temporary workarounds and hacks. Example: a bug in a third-party library.
 - Complex business logic or non-obvious behavior. Sometimes implementation is driven by obscure requirements.
 - Critical sections. Especially those involving security or financial logic.
 - TODO comments to indicate technical debt.
 
-# 5. Formatting
+## 5. Formatting
 
 Formatting isn’t just about aesthetics — it’s crucial for **readability** and **maintainability**. Well-formatted code helps developers understand structure and logic faster.
 
-## General Principles
+### General Principles
 
 - **Code should be read top-to-bottom, left-to-right**, just like regular text. The order matters.
 - **Spaces between operators** help clarify logic and make expressions more readable.
 - **Vertical spacing (blank lines)** groups related sections and separates unrelated ones.
 - **Horizontal indentation (tabs or spaces)** shows nesting and visibility scopes.
 
-## Line Length
+### Line Length
 
 - Limit line length to **80**, **100**, or **120 characters** (based on your team’s conventions).
 - Short lines improve:
@@ -943,7 +953,7 @@ Formatting isn’t just about aesthetics — it’s crucial for **readability** 
   - Compatibility with small screens,
   - Clarity in diffs (e.g., in pull requests).
 
-## Structure and Order
+### Structure and Order
 
 - **Logically related functions should be placed close together**.
   - For example: `validateUser()` and `saveUser()` should be near each other.
@@ -956,7 +966,7 @@ Formatting isn’t just about aesthetics — it’s crucial for **readability** 
 
 ---
 
-## Additional Recommendations
+### Additional Recommendations
 
 - **One level of abstraction per block.**
   - Don’t mix high-level logic with low-level details in the same method.

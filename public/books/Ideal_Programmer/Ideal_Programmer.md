@@ -1,98 +1,102 @@
-# 1. General principles
+# Robert Martin - Ideal Programmer
 
-**You are responsible for your work**
+## 1. General principles
+
+### You are responsible for your work
 
 Not your manager, not the team lead, but you.
 
-**Quality Assurance should not find anything**
+### Quality Assurance should not find anything
 
 Noone will double check you. Work the way as if there's no quality control engineers.
 
-**Which code is bad? - the one which you're not confident in**
+### Which code is bad? - the one which you're not confident in
 
-**Boyscout rule**
+### Boyscout rule
 
 While working with a module, make it better than it was.
 
-**Test driven development helps to**
+### Test driven development helps to
 
 - build a strong architecture - composition - structure
   (to test this large func you need to compose it into multiple funcs)
 
-**Self development**
+### Self development\*
 
 Noone cares about your desires, goals etc. You need to develop yourself. Read tech blogs, subscribe to frameworks events.
-40 hours a week work. 20 hours a week study.
+40 hours per week work. 20 hours per week study.
 No, it's not overtime, you just need to pay attention to your time consumption.
 Stay up-to-date. You don't want to use a doctor who's work principles are 20 years old.
 
-**Specialization**
+### Specialization
 
 Be strong in your specialization.
 Frameworks, etc. Deep knowledge.
 
-**Domain**
+### Domain
 
-Understand the purpose of the project domain, company values.
+Understand the purpose of the project, domain, company values.
 
-# 2. How to say No
+## 2. How to say No
 
-**Define requirements**
+### Define requirements
 
 Split time or amount of work into stages. On this stage you are working only on this, after this stage you can work on it's updates.
 People don't clearly know what they want. This is the reason of high amount of updates.
 
-**Discuss the resources**
+### Discuss the resources
 
 I need this amount of time and people.
 
-**Do not let pressure to influence you**
+### Do not let pressure influence you
 
 If the deadlines are though etc, tell about this, or your problem.
 Managers have their goals, and you have yours.
 
-**Overtime**
+### Overtime
 
 No. This will unbalance your power.
 
-**Do not try**
+### Do not try
 
 Once all of the above is done, it's time to work. Not attempting, but completing. Take a decision to complete this task, project.
 
-**Do not be a hero**
+### Do not be a hero
 
 No, you are not able to complete it by the end of this week. No overtime. You are not a hero.
 
-# 3. How to say Yes
+## 3. How to say Yes
 
-**Promise language**
+### Promise language
 
-_Falsy promises_  
+#### Falsy promises
+
 I should start hitting the jym.
 Hopefully I will finish this task today.
 
-_True promises_  
+#### True promises
+
 I am hitting the gym 3 times a week. I got my gear, training program, trainer and a friend.
 I will finish this task today. If not sure, say tomorrow.
 
-Difference - Deterministic
+#### Difference - Deterministic
 
-**Common issues**
+### Common issues
 
 If this doesn't fully depend on you, but on another department, engineer.
 Currently I am working on this. I faced this issue. I reached out to this engineer from this department. He said he needs 1 day to push his fix. After that, I will need 8 more hours to push my updates.
 
-**Daily calls**
+### Daily calls
 
 Yesterday I worked on this.
 Today I am working on this. I will finish it in n hours.
-Or, I am facing an issue, I reached out to, after that it will take me 8 more hours to finish.
+Or, I am facing an issue, I reached out to, after that, it will take me 8 more hours to finish.
 
-# 4. Coding
+## 4. Coding
 
-**Blind typing**
+### Blind typing
 
-You know the keys to type. You don't type them when you are not confident. Since you don't know the solution or many other reasons below.
+You know which keys to type. You don't type them when you are not confident. Since you don't know the solution or many other reasons below.
 
 Typing is similar to
 
@@ -102,13 +106,13 @@ Typing is similar to
 Your fingers are performing low level task, and brain high level task.
 In order to save all of the energy for brain, learn to blind type.
 
-**Concentration**
+### Concentration
 
 Coding requires concentration which physically is a hard to maintain state.
 There is a long list of tasks, meetings, every day life issues.
 Cool off, and then clean code.
 
-**Night**
+### Night
 
 Think working at night shows how you love what you're doing? - No.
 Instead, use 8 hours a day.
@@ -120,34 +124,36 @@ However, if this is the only one option to go, do
 
 Working at night, requires extra effort, and unbalances your body hours, which leads to productivity loss.
 
-**Anxiety**
+### Anxiety
 
 Do not make yourself code.
 Analyse, Why you feel this? What should you do to fix this?
 Write it down.
 Toyota 5 principles.
 
-**Basic**
+### Basic
 
 Eat, Sleep, Sex, Sport, Society.
 
-**Flow Zone**
+### Flow Zone
 
 A state of high concentration.
 
-_Problem_  
+#### Problem
+
 The entire image (goal) is blurred, because of the speed, you make not the greatest solutions.
 
-_Solution_  
+#### Solution
+
 Stop. Reflect. Why? Toyota 5 principles.
 
-**Music**
+### Music
 
 Helps to get into the zone.
 Distracts.
 Uses resources.
 
-**Stuck**
+### Stuck
 
 - Ask for help
 - Pair programming
@@ -155,43 +161,43 @@ Uses resources.
 - Inspiration: movies, books, people.
 - Hobby, Primitive tasks - distract from work.
 
-**Schedule**
+### Schedule
 
 You will be running late. It's ok. Just don't give up, keep going.
 
-**Rush**
+### Rush
 
 Do not let the pressure overwhelm you.
 
-**Overtime**
+### Overtime
 
 Only if you have resources for this.
 If it's not gonna take longer than a week.
 Chief has a plan for the worst case.
 
-# 5. TDD
+## 5. TDD
 
 Test first.
 Code for this test.
 Repeat.
 
-**Composition**
+### Composition
 
 To test this func, split it into multiple smaller funcs.
 
-**Regular build**
+### Regular build
 
 Following the certain stages. Test from time to time.
 
-**Editing existing**
+### Editing existing
 
 Not being afraid to edit. Since tests will check it.
 
-**Documentation**
+### Documentation
 
 Following the certain stages. Documenting requirements.
 
-# 6 Trainings
+## 6 Trainings
 
 - new languages, frameworks
 - pet projects
@@ -199,9 +205,9 @@ Following the certain stages. Documenting requirements.
 - volunteering
 - challenges (lc, etc)
 
-# 7. Time
+## 7. Time
 
-**Meetings**
+### Meetings
 
 What is the goal, plan of the meeting?
 What is your goal on this meeting?
@@ -209,16 +215,14 @@ Always have and share a plan for the meeting.
 Record meetings for others.
 I prefer attending many meetings and have some extra knowledge instead of doing smth, which will not be used or will have to be updated.
 
-**Arguments**
+### Arguments
 
 Create RFC, a doc with comments.
 Participants write down their thoughts, share them.
 When you write you formulate, rethink, analyze better.
 Doc is stored and can be accessed at any time.
 
-**Concentration**
-
-Problem
+### Concentration
 
 - anxiety - write it down, analyze.
 
@@ -234,20 +238,20 @@ Problem
 
 - inspiration - books, movies, people.
 
-**Pomodoro**
+### Pomodoro
 
 - 45 m Work
 - 10 m Diff
 - 5 m Break
 
-**Priorities Inversion**
+### Priorities Inversion
 
 1st task is boring or hard or solution not found, but it's the most important task.
 2nd task is fun, easy, but has lower priority.
 Often, the 2nd task will be the first to work on.
 Cool off, follow the priorities list.
 
-**Closure**
+### Closure
 
 There are 2 solutions for the problem.
 Decided to go with the 1st.
@@ -257,7 +261,7 @@ This is called closure. Since much resources were payed to the 1st, the switch t
 In this case, stop digging a pit. The longer you go with 1st the deeper you get.
 Professional is ready to switch any time between his solutions, ideas etc.
 
-**Dirt**
+### Dirt
 
 Similar to pit but worse.
 There is a solution to this problem or a feature developed.
@@ -265,99 +269,99 @@ After some updates, time etc. other features override existing, or other issues.
 It means the wrong architecture solution was taken.
 Instead of making dirt with current solution switch to another one and redo from scratch.
 
-# 8. Estimates
+## 8. Estimates
 
-**Promise, or commitment**
+### Promise, or commitment
 
 If you promise to complete this task within specific deadlines, you must accomplish it.
 In this case, if anything goes wrong you will have to work overtime, on weekend.
 
-**Estimate**
+### Estimate
 
 Sharing your thoughts on this task, so the resources needed are not determined as they are in case with promise.
 
-**How to estimate**
+### How to estimate
 
-**Probability counting**
+### Probability counting
 
 O - optimistic case, all goes smooth by plan
 N - neutral case, some issues but following the plan
 P - pesimistic case, everything goes wrong
 
-**Formula = (O + 4 N + P) / 6**
+_Formula = (O + 4 N + P) / 6_
 
-**Create weighted graph**
+### Create weighted graph
 
-**Theory of Large numbers**
+### Theory of Large numbers
 
 Compose large task into smaller. Estimate them, count result.
 
-**Poker planning**
+### Poker planning
 
 Ask colleagues about their thoughts on this point.
 One of people is selecting the estimate to discuss.
 Each member of a group has 5 papers with numbers from 1 to 5.
 After 1, 2, 3 everyone shows their point at the same time.
 
-# 9. Pressure
+## 9. Pressure
 
 A doctor is making a surgery, what if he complained how tired he is, how difficult it is, smoke every 5 minutes, smack his tools.
 
-**Promises**
+### Promises
 
 Give promises when you are confident, always give estimates.
 
-**Interaction**
+### Interaction
 
 Tell management about your issues and solutions for them.
 
-**Code**
+### Code
 
 Keep it clean. No dirt.
 If you remove tests under pressure, it means you don't believe in them.
 
-**Help**
+### Help
 
 Ask for help.
 Your colleague will see what you can't see.
 People like to help.
 Help when someone is in pit.
 
-**Stress**
+### Stress
 
 Control the stress. Write it out. Reflect. Calm down. Make a plan.
 You work best when you are calm.
 
-**Resume**
+### Resume
 
 Calmness.
 Cleaness in code.
 Interaction, help.
 
-# 10. Interaction
+## 10. Interaction
 
-**Programmer - People**
+### Programmer - People
 
 It's hard to understand some people, get their point?
 And the computer is deterministic?
 No, you work for them, you code for them.
 
-**Programmer - Manager**
+### Programmer - Manager
 
 Manager is working for business goals.
 And you work for business, you want it to succeed and be successful.
 
-**Programmer - Programmer**
+### Programmer - Programmer
 
 Need to be concentrated? Headphones, dark corner? Shy to ask for help?
 No, all of you are working on the same goal, with the same tasks, so you have to ask for help and provide it.
 Sit together, in the same room, watch how they work.
 
-**Resume**
+### Resume
 
 Your work is for people. So do not escape them, interact with them.
 
-# 11. Education
+## 11. Education
 
 Doctors study decades and tons of information before even attending to the exams.
 People in IT complain that there is no work after they did some youtube videos and 2 months courses. Ha-ha.
