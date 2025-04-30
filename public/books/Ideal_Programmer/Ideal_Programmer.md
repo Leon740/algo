@@ -21,7 +21,7 @@ While working with a module, make it better than it was.
 - build a strong architecture - composition - structure
   (to test this large func you need to compose it into multiple funcs)
 
-### Self development\*
+### Self development
 
 Noone cares about your desires, goals etc. You need to develop yourself. Read tech blogs, subscribe to frameworks events.
 40 hours per week work. 20 hours per week study.
@@ -71,7 +71,7 @@ No, you are not able to complete it by the end of this week. No overtime. You ar
 
 #### Falsy promises
 
-I should start hitting the jym.
+I should start hitting the gym.
 Hopefully I will finish this task today.
 
 #### True promises
@@ -274,7 +274,7 @@ Instead of making dirt with current solution switch to another one and redo from
 ### Promise, or commitment
 
 If you promise to complete this task within specific deadlines, you must accomplish it.
-In this case, if anything goes wrong you will have to work overtime, on weekend.
+In this case, if anything goes wrong you will have to work overtime.
 
 ### Estimate
 

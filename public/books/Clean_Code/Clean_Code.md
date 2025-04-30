@@ -52,7 +52,7 @@ console.log(oddNumbers);
 
 item, string, object, data, info
 
-- locationItem -> currentLocation
+- locationItem -> location
 - i -> index
 
 ```ts
@@ -64,8 +64,8 @@ LOCATIONS.forEach((locationItem, i) => {
 });
 
 // ✅
-LOCATIONS.forEach((currentLocation, index) => {
-  console.log(index, currentLocation);
+LOCATIONS.forEach((location, index) => {
+  console.log(index, location);
 });
 ```
 
@@ -111,9 +111,7 @@ console.log(paintedCar);
 - Tday -> Day  
   no need to mention it's type, IDE knows it. Prefixes are skipped by brain.
 - ALL_DAYS -> DAYS_OF_WEEK
-- no get keyword
 - no days arg
-- day -> currentDay
 
 ```ts
 // ❌
@@ -158,8 +156,8 @@ const isWeekend = (day: Day) => {
   return day === 'Saturday' || day === 'Sunday';
 };
 
-const workingDaysOfWeek = DAYS_OF_WEEK.filter((currentDay) => !isWeekend(currentDay));
-const weekendDaysOfWeek = DAYS_OF_WEEK.filter((currentDay) => isWeekend(currentDay));
+const workingDaysOfWeek = DAYS_OF_WEEK.filter((day) => !isWeekend(day));
+const weekendDaysOfWeek = DAYS_OF_WEEK.filter((day) => isWeekend(day));
 
 console.log(workingDaysOfWeek);
 console.log(weekendDaysOfWeek);
@@ -485,21 +483,21 @@ type State = 'Loading' | 'Success' | 'Error';
 const STATE: State = 'Loading';
 
 // ❌
-const displaySpinner = () => {
+const showSpinner = () => {
   console.log('Loading...');
 };
 
 if (STATE === 'Loading') {
-  displaySpinner();
+  showSpinner();
 }
 
 // ✅
-const shouldDisplaySpinner = (state: State) => {
+const shouldShowSpinner = (state: State) => {
   if (state === 'Loading') {
     console.log('Loading...');
   }
 };
-shouldDisplaySpinner(STATE);
+shouldShowSpinner(STATE);
 ```
 
 ## 3. Objects
@@ -507,7 +505,7 @@ shouldDisplaySpinner(STATE);
 ### Use getters and setters
 
 _Problem_  
-Class state can be modified outside, which leads to side effects and unpredictable behavior.
+Class state can be modified outside, which leads to side effects and unpredictable behavior.  
 _Solution_  
 Use private properties, encapsulate logic inside, have a set of actions to modify it, defined inside.
 
@@ -963,8 +961,6 @@ Formatting isn’t just about aesthetics — it’s crucial for **readability** 
   - Then `protected`,
   - Followed by `private`.
 - Alternatively, order by **importance** or **frequency of use**.
-
----
 
 ### Additional Recommendations
 
