@@ -12,7 +12,7 @@ Let’s say the government places taxes on imported goods. The goal? To stimulat
 
 At first glance, this seems like a smart way to protect local businesses. But here’s what often happens instead:
 
-❌ Problem:
+❌ Problem
 
 - Prices rise because local manufacturers still rely on imported components.
 - Prices rise again due to monopolies - local producers no longer need to compete.
@@ -21,7 +21,7 @@ At first glance, this seems like a smart way to protect local businesses. But he
 
 In short, the consumer suffers while producers become complacent.
 
-✅ Solution:
+✅ Solution
 
 - Invest in multiple sectors of the economy: education, technology, infrastructure, and culture.
 - Remove import taxes and challenge local producers to compete globally.
@@ -35,7 +35,7 @@ Imagine you’re choosing between three subscription plans: A, B, and C - where 
 Choosing A or B usually gives the provider a clear incentive: to make your experience better so that you’ll upgrade.
 But once you’re on Plan C, the provider’s goal shifts - they just want you to stay. There’s no longer a reason to improve your experience.
 
-The Takeaway:
+The Takeaway
 
 Never buy the most expensive plan - not unless you’re sure it’s maintained at the highest quality.
 Sometimes, being just below the top gives you the best service.
