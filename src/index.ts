@@ -1,7 +1,7 @@
-import { getInsertIndexTests } from './meta/easy/8_search_insert/8_search_insert.test.ts';
+import { mergeTwoSortedArraysTests } from './meta/easy/9_merge_two_sorted_arrays/9_merge_two_sorted_array.test.ts';
 import { runTests } from './utils/log.ts';
 
 runTests({
   name: 'removeDuplicatesFromArrayTests',
-  tests: getInsertIndexTests
+  tests: mergeTwoSortedArraysTests
 });
