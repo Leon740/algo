@@ -1,7 +1,7 @@
-import { climbStairsTests } from './meta/easy/10_climb_stairs/10_climb_stair.test.ts';
+import { getMaxProfitTests } from './meta/easy/11_buy_sell_stock/11_buy_sell_stock.test.ts';
 import { runTests } from './utils/log.ts';
 
 runTests({
   name: 'removeDuplicatesFromArrayTests',
-  tests: climbStairsTests
+  tests: getMaxProfitTests
 });
