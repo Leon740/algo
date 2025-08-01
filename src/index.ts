@@ -1,7 +1,7 @@
-import { getLuckyNumberInArrayTests } from './meta/easy/14_lucky_number/14_lucky_number.test.ts';
+import { numArrayTests } from './meta/easy/15_sum_range/15_sum_range.test.ts';
 import { runTests } from './utils/log.ts';
 
 runTests({
   name: 'getLuckyNumberInArrayTests',
-  tests: getLuckyNumberInArrayTests
+  tests: numArrayTests
 });
