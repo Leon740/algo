@@ -1,20 +1,46 @@
-// O(n)
-export const isPalindrome = (value: string | number): -1 | 0 | boolean => {
-  if (typeof value === 'undefined') return -1;
+const getCleanedWord = (dirtyWord: string): string => {
+  return dirtyWord
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]/gi, '');
+};
 
-  const stringifiedValue = String(value).trim().toLowerCase();
+export const isPalindrome_0 = (word: string): boolean => {
+  if (word.length === 0) {
+    return false;
+  }
+  if (word.length === 1) {
+    return true;
+  }
 
-  if (stringifiedValue.length === 0) return 0;
-
+  const cleanedWord = getCleanedWord(word);
   let startIndex = 0;
-  let endIndex = stringifiedValue.length - 1;
+  let endIndex = cleanedWord.length - 1;
 
   while (startIndex < endIndex) {
-    if (stringifiedValue[startIndex] === stringifiedValue[endIndex]) {
-      startIndex++;
-      endIndex--;
+    console.log(cleanedWord[startIndex]);
+    console.log(cleanedWord[endIndex]);
+
+    if (cleanedWord[startIndex] !== cleanedWord[endIndex]) {
+      return false;
     }
+    startIndex++;
+    endIndex--;
   }
 
   return true;
+};
+
+export const isPalindrome_1 = (word: string): boolean => {
+  const cleanedWord = getCleanedWord(word);
+  const wordLength = cleanedWord.length;
+  const middleIndex = Math.floor(wordLength / 2);
+  const firstHalf = cleanedWord.slice(0, middleIndex);
+  const secondHalf = cleanedWord.slice(
+    wordLength % 2 === 0 ? middleIndex : middleIndex + 1,
+    wordLength
+  );
+  const secondHalfReversed = secondHalf.split('').reverse().join('');
+
+  return firstHalf === secondHalfReversed;
 };
