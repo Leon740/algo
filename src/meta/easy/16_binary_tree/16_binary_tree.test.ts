@@ -35,5 +35,10 @@ export const binaryTreeTests: Test[] = [
     name: 'postorder',
     expected: [4, 2, 3, 1],
     actual: binaryTree.postorderTraversal()
+  },
+  {
+    name: 'diameter',
+    expected: 3,
+    actual: binaryTree.getDiameter()
   }
 ];

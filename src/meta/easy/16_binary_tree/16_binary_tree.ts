@@ -46,4 +46,23 @@ export class BinaryTree {
     }
     return result;
   }
+
+  getDiameter(): number {
+    let maxDiameter = 0;
+
+    const getHeight = (node: TreeNode | null): number => {
+      if (!node) return 0;
+
+      const leftHeight = getHeight(node.left);
+      const rightHeight = getHeight(node.right);
+      const localDiameter = leftHeight + rightHeight;
+
+      maxDiameter = Math.max(maxDiameter, localDiameter);
+
+      return Math.max(leftHeight, rightHeight) + 1;
+    };
+
+    getHeight(this.root);
+    return maxDiameter;
+  }
 }
